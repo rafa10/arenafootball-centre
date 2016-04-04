@@ -53,8 +53,13 @@ It comes pre-configured with the following bundles:
   * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
     capabilities
 
+
+	![alt tag](https://www.arenafootball-centre/assets/image/home.png)
+
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
+
+
 
 Enjoy!
 
