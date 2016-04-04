@@ -1,0 +1,378 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace stadier - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <body>
+        <div class="container">
+            {{ include("ArenafootballPlateformBundle:Menu:header_menu.html.twig") }}
+                
+            <div class="main">
+            
+            <div class="column instruction"> 
+
+            	<script type="text/javascript">
+                                function clickAffiche(){
+                                        document.getElementById('list_p').style.display='none' ;           
+                                        document.getElementById('ajouter_p').style.display='block' ;                            
+                                                    } 
+                                function clickHMatche(){            
+                                        document.getElementById('list_p').style.display='block' ;            
+                                        document.getElementById('ajouter_p').style.display='none' ;
+                                                    }
+                            </script>
+
+
+            <div id="list_p" class="content_completed"> 
+
+               {% if terrains %}
+               {% for ter in terrains %}                       
+                <div  id="id_{{ter.id}}" class="componentS "> 
+                    {% if plannings  %}                           
+                        <table>                           
+                            <thead>
+                                <tr>                                                        
+                                    <th style="width:20%;">
+                                        <img src="{{ asset('assets/image/football962.png') }}" width="40" height="40"/>
+                                    </th>
+                                    <th style="width:60%; color:#FFF;">
+                                        <b class="icon-"> </b><b>{{ ter.nom|striptags  }}</b>
+                                    </th>
+                                    <th style="width:20%; color:#FFF;">
+                                        <b class="icon-users"> </b><b>{{ ter.capacite }} personne</b>
+                                    </th>
+                                </tr>
+                            </thead>                           
+                        {% for planning in plannings %}
+                        {% if planning.terrain.id == ter.id %}
+                            <tbody>
+                                <tr>                                                        
+                                    <th style="border-right:1px solid #FFF; background:#2D3033;"><b>Planning</b></th>
+                                    <th style="border-right:1px solid #FFF; background:#2D3033; " ><b>
+                                        <b class="icon-calendar"> </b>
+                                        {{ planning.dateGo|date('d-m-Y') }} --> {{ planning.dateEnd|date('d-m-Y') }}
+                                        <b class="icon-stopwatch"> </b>
+                                        {{ planning.timeGo|date('H:i') }}H --> {{ planning.timeEnd|date('H:i') }}H</b>
+                                    </th>
+                                    <th style="border-right:1px solid #FFF; background:#2D3033;" >
+                                        <b class="icon-tag"> </b><b style="font-size:25px;">{{ planning.prix }}</b>.00 TND
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" style="background:#fff; border-bottom:1px solid #ccc;" >
+                                        <aside style="text-align:left; color:#000; ">
+                                            Durée du matche: <b class="icon-stopwatch"></b><b>{{ planning.dureeSceance }}</b><br>
+                                            {% set difference = date(planning.dateEnd).diff(date(planning.dateGo)) %}
+                                            {% set leftDays = difference.days %}
+                                            Nombre des jours planning: <b class="icon-calendar2"></b><b>{{ leftDays }}</b><br>
+                                            Capacité de terrain: {{ planning.terrain.capacite }} <b class="icon-users"></b>
+                                        </aside>
+                                        <aside style="text-align:left; color:#000;">
+                                            <b>Description: </b>{{ planning.description }}
+                                        </aside>
+                                    </th>
+                                    <td style="background:#fff; border-bottom:1px solid #ccc;">
+                                        <img src="{{ asset('assets/image/wallclock.png') }}" width="70" height="70" alt="planning" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  colspan="3" style="background:#FFF;">
+                                        <a class="add"  href="javascript:clickAffiche();"><b class="icon-plus"> </b></a>
+                                        <a class="edit" href="{{ path('arenafootball_plateform_Planning_edit',{'id': planning.id}) }}">
+                                            <i class="icon-pencil" style="font-size:14pt;"></i>
+                                        </a>&nbsp;
+                                        <a class="delete" href="{{ path('arenafootball_plateform_Planning_delete',{'id': planning.id}) }}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce planning: {{ planning.id }} ?'));" >
+                                            <i class="icon-remove" style="font-size:14pt;"></i>
+                                        </a>                                               
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" style=" background:#FFF; border-bottom:1px solid #CCC;">
+                                        <aside  id="id_{{ planning.dateGo|date_modify("+1 day")|date('U')}}" style="font-size:12px;">
+                                            <button class="class_{{ planning.dateGo|date_modify("+1 day")|date('U')}}">
+                                                Voire planning 
+                                            </button>
+                                        </aside>
+                                        <aside  id="id_{{ planning.dateGo|date_modify("+2 day")|date('U')}}" style="font-size:12px; display:none;">
+                                            <button class="class_{{ planning.dateGo|date_modify("+2 day")|date('U')}}">
+                                                Retour 
+                                            </button>
+                                        </aside>
+                                    </th>
+                                </tr> 
+                            
+                            
+
+                            <script type="text/javascript">
+
+                                $( ".class_{{ planning.dateGo|date_modify("+1 day")|date('U')}}" ).click(function() {
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+3 day")|date('U')}}').style.display='block' ;
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+2 day")|date('U')}}').style.display='block' ;
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+1 day")|date('U')}}').style.display='none' ; 
+                                    });
+
+                                $( ".class_{{ planning.dateGo|date_modify("+2 day")|date('U')}}" ).click(function() {
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+1 day")|date('U')}}').style.display='block' ;
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+3 day")|date('U')}}').style.display='none' ;
+                                    document.getElementById('id_{{ planning.dateGo|date_modify("+2 day")|date('U')}}').style.display='none' ;
+                                    });                                    
+                            </script>
+
+                            </tbody>
+                        
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for planning in plannings %}
+                        {% if planning.terrain.id == ter.id %}
+                        {% set difference = date(planning.dateEnd).diff(date(planning.dateGo)) %}
+                        {% set leftDays = difference.days %}    
+                        </tbody><tr>
+                        <table style="margin-top:-51px; " id="id_{{ planning.dateGo|date_modify("+3 day")|date('U')}}" class="hide">
+                        {% for jour in 0..leftDays %}
+                            <thead>
+                                
+                            </thead>
+                            <tbody>        
+                                <tr>{% set i = loop.index0 %}                               
+                                    <td style="background:#FFF;">&nbsp;</td>
+                                    <th style="background:#FFF; width:100%; color:#333; border-bottom:1px solid #fff;">
+                                    {% if planning.dateGo|date_modify("+" ~ i ~  "day")|date('d-m-Y') == "now"|date('d-m-Y') %} 
+                                        <aside class="red_bord">                                        
+                                        <b class="icon-calendar"></b>
+                                        <b>Aujourd'hui</b>&nbsp;&nbsp;
+                                        <b class="icon-stopwatch"></b>
+                                        <b>{{ planning.timeGo|date('H:i') }}H</b> - <b>{{ planning.timeEnd|date('H:i') }}H</b>
+                                        </aside>  
+                                    {% else %}
+                                        <aside>                                        
+                                        <b class="icon-calendar"></b>
+                                        <b>{{ planning.dateGo|date_modify("+" ~ i ~  "day")|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y') }}</b>&nbsp;&nbsp;
+                                        <b class="icon-stopwatch"></b>
+                                        <b>{{ planning.timeGo|date('H:i') }}H</b> - <b>{{ planning.timeEnd|date('H:i') }}H</b>
+                                        </aside>
+                                    {% endif %}        
+                                    </th>                                    
+                                    <td style="background:#FFF;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                   <td colspan="3" style="background:#FFF; width:100%; color:#333;border-bottom:1px solid #CCC;">
+                                        {% for item in sceances %}
+                                            {% if item.terrain.id == planning.terrain.id %}
+                                                <span class="clock_booking">                      
+                                                    {#******************si la date est déja réserver match************************#}
+                                                     {% for M in MBooking %}
+                                                        {%  
+                                                            if M.terrain.id == planning.terrain.id 
+                                                            and M.date|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') and M.time|date('H:i') == item.timeGo|date('H:i') 
+                                                        %}                             
+                                                            <div class="clock_booking_book"><b class="icon-paste"> </b></div>
+                                                        {% endif %}                                                            
+                                                    {% endfor %}
+
+                                                    {#******************si la date est déja réserver abonnement**********************#}
+                                                    {% for A in ABooking %}
+                                                        {%  
+                                                        if A.terrain.id == planning.terrain.id 
+                                                        and A.dateGo|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U')   and A.time|date('H:i') == item.timeGo|date('H:i') %}
+                                                            <div class="clock_booking_book"><b class="icon-feed2"> </b></div>
+                                                        {% endif %}                                                            
+                                                    {% endfor %} 
+                                                    {#******************si la date est déja réserver académie*********************#}
+                                                    {% for C in CBooking %}
+                                                        {%  
+                                                        if C.terrain.id == planning.terrain.id 
+                                                        and C.dateGo|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U')   and C.time|date('H:i') == item.timeGo|date('H:i') %}
+                                                            <div class="clock_booking_book"><b class="icon-users"> </b></div>
+                                                        {% endif %}                                                            
+                                                    {% endfor %} 
+                                                    {#************************************************************************#}
+
+
+
+                                                    {#% for AB in ABooking %}
+                                                        {% for i in 1..AB.nbSceance %}{% set j = loop.index0 * 7 %}
+                                                        {%  if AB.terrain.id == planning.terrain.id and
+                            AB.dateGo|date_modify("+" ~ j ~  "day")|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') and
+                                                              AB.time|date('H:i') == item.timeGo|date('H:i') %}                             
+                                                                <div class="clock_booking_book"><b class="icon-feed2"> </b></div>
+                                                        {% endif %}                                                            
+                                                        {% endfor %}
+                                                    {% endfor %#}  
+
+                                                    {#***************si la date d'ajourdhuit***********************#}
+
+                                                    {% if "now"|date('U') > planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') %}
+                                                            <div class="clock_booking_passe"><b class="icon-stopwatch"> </b>
+                                                                {{item.timeGo|date('H:i')}}
+                                                            </div>                                                                       
+                                                        {% endif %}
+
+                                            {#***************si la date d'ajourdhuit est l'heure déja passé*****************#}
+                                                        
+                                                        {% 
+                                                        if "now"|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') 
+                                                        and "now"|date('H:i') > item.timeGo|date('H:i')
+                                                         %}
+                                                            <div class="clock_booking_passe"><b class="icon-stopwatch"> </b>
+                                                                {{item.timeGo|date('H:i')}}
+                                                            </div>                                                    
+                                                        {% endif %}
+
+                                            {#****************si la date en cours est suit d'heure du jour*****************#}
+                                                        
+                                                         {% 
+                                                            if "now"|date('U') == planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') 
+                                                            and "now"|date('H:i') < item.timeGo|date('H:i') 
+                                                         %}
+                                                            <div class="clock_booking_naw"><b class="icon-stopwatch"> </b>
+                                                                {{item.timeGo|date('H:i')}}
+                                                            </div>                                                        
+                                                        {% endif %}
+
+                                                    {#*****************si la date pas encore arrivé*************************#}    
+                                                        
+                                                        {% if "now"|date('U') < planning.dateGo|date_modify("+" ~ i ~  "day")|date('U') %}
+                                                            <div class="clock_booking_naw"><b class="icon-stopwatch"> </b>
+                                                                {{item.timeGo|date('H:i')}}
+                                                            </div>                                                        
+                                                        {% endif %}
+
+                                                    {#******************************************#}    
+                                                </span>                                       
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        {% endfor %} 
+                        </table>
+                        </tr></body>
+                        {% endif %}    
+                        {% endfor %}
+                        </table>
+                        {% else %}
+                        <table>
+                            <thead>
+                                <tr>                                                        
+                                    <th style="border-right:1px solid #FFF; color:#FFF;">
+                                        <img src="{{ asset('assets/image/football962.png') }}" width="40" height="40"/>
+                                    </th>
+                                    <th style="border-right:1px solid #FFF; color:#FFF; width:50%;" >
+                                        <b class="icon-calendar"></b>
+                                         <b class="icon-stopwatch"></b>
+                                    </th>
+                                    <th style="border-right:1px solid #FFF; color:#FFF;" ><b class="icon-tags"></b></th>
+                                </tr>
+                            </thead>                           
+                            <tbody>
+                                <tr>
+                                    <th colspan="2" style="background:#fff; border-bottom:1px solid #ccc;" >
+                                        <aside style="text-align:left; color:#000; ">
+                                            Durée du matche: <b class="icon-stopwatch"></b><br>
+                                            
+                                            Nombre des jours planning: <b class="icon-calendar2"></b><br>
+                                            
+                                            Capacité de terrain:  <b class="icon-users"></b>
+                                        </aside>
+                                        <aside style="text-align:left; color:#000;">Description: </aside>
+                                    </th>
+                                    <th colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+                                        <img src="{{ asset('assets/image/wallclock.png') }}" width="70" height="70"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td  colspan="3" style=" text-align:right; background:#FFF;">
+                                        <a class="add"  href="javascript:clickAffiche();"><b class="icon-plus"> </b>Ajouter planning</a>
+                                    </td>
+                                </tr>                                 
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+                <div id="ajouter_p" style="display:none;" class="content_center"><br>                                 
+                    <div style="width:750px;" class="booking">
+                        {{ form_start(form) }}
+                            <h1 style="background:#333; font-size:1.4em; color:#2ecc71; padding: 13px; text-align:center;">Créez planning jour du terrain </h1>
+                                <br>                       
+                                <table style="width:80%;">
+                                        <tr class="hide">
+                                            <th>{{ form_label(form.centre, "centre") }} :</th>
+                                            <td>{{ form_widget(form.centre) }}</td>
+                                        </tr>
+                                         <tr>
+                                            <th style="width:50%;">{{ form_label(form.terrain, "Terrain") }} :</th>
+                                            <td style="width:50%;">{{ form_widget(form.terrain) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.dateGo, "Date de début") }} :</th>
+                                            <td>{{ form_widget(form.dateGo) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.dateEnd, "Date de fin") }} :</th>
+                                            <td>{{ form_widget(form.dateEnd) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.timeGo, "Temps de début") }} :</th>
+                                            <td>{{ form_widget(form.timeGo) }}</td>
+                                        </tr>                                    
+                                        <tr>
+                                            <th>{{ form_label(form.timeEnd, "Temps de fin") }} :</th>
+                                            <td>{{ form_widget(form.timeEnd) }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.dureeSceance, "durée du séance") }}:</th>
+                                            <td>{{ form_widget(form.dureeSceance) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.description, "Description") }} :</th>
+                                            <td>{{ form_widget(form.description) }}  </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.capacite, "Capacité") }}:</th>
+                                            <td>{{ form_widget(form.capacite) }}  </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.prix, "Prix") }}:</th>
+                                            <td>{{ form_widget(form.prix) }}  </td>
+                                        </tr>
+                                        
+                                </table>
+                                <aside style="text-align:center;"><br>                               
+                                        <a class="button" href="javascript:clickHMatche()">Retour</a>
+                                        <button type="submit">Créer planning</button>
+                                        <button type="reset">Annuler</button>
+                                </aside><br>                               
+                        {{ form_end(form) }}
+                    </div><br>
+                </div> 
+           
+
+                 
+
+         </div>
+        </div>
+        <footer>
+            {{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+        </footer>
+        </div><!-- /container -->
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            <script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+            <script src="{{ asset('assets/js/classie.js') }}"></script>
+            <script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+            <script>
+                new gnMenu( document.getElementById( 'gn-menu' ) );
+            </script>
+        {% endblock %}
+{% endblock %}
+
+
+
+
+                                                 

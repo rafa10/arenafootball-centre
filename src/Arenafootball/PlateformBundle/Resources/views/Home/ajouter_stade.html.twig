@@ -1,0 +1,247 @@
+
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %}Créez centre - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			<!--header-->
+              {{ include("ArenafootballPlateformBundle:Menu:header_menu_website_content.html.twig") }} 
+			<!--content-->
+						
+			<div class="main">	
+                
+		        
+		        <div class="column three_small">
+
+		        	<!--<p class="text_corps" ><strong>Ajouter votre stade des maintemant</strong></p>
+					<p class="text_corps2" >Accéder ou Créer un espace personnel pour la gestion de votre stade </p>-->						
+					<br>
+					<div class="item-icon">						
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img  src="{{ asset('assets/image/football96.png') }}" width="70" height="70" alt="" /></div>
+						</div>
+						<div class="post_small ">
+							<div class="icon_small"><span class="icon-pencil"> </span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-cogs"></span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-user4"></span></div>
+						</div>
+					</div>
+
+		        </div>
+
+		          <!--<div id="hero_bleu" class="row center"></div>-->          
+		        
+		        	
+		    <div class="column instruction">	
+
+		       <!--{{ include("ArenafootballPlateformBundle:php:region_stade.html.twig") }}-->
+		       	<!--<p class="text_corps3" >Ajouter votre stade des maintemant</p>-->
+
+				<div class="nav_left">
+					<div class="region">
+                        <h3 class="text_region">Région</h3>
+                            <ul>
+                                {% for item in regioncentre %}
+                                    <li><span class="icon-map">&nbsp;</span><a href="{{ path('arenafootball_plateform_centre',{'region': item.nom}) }}">{{ item.nom }}</a></li>
+                                {% endfor %}
+                            </ul>                       
+                        </div><p></p>
+				</div>
+
+				<div style="width:58%;" class="content_center"><br>
+
+					<!--***********************************progressbar1****************************************-->
+
+					    <div id="f_coordonnees" class="booking">
+		                 {{ form_start(form) }}
+		                	<h1 style="background:#333; color:#2ecc71; padding: 13px; text-align:center;">Créez votre centre du football </h1>
+
+		                	{#<ul id="pb1" class="progressbar">
+								<li class="active"><b class="icon-radio-checked"></b><br>Vos coordonnées</li>
+								<li><b class="icon-radio-unchecked"> </b><br>Vos centre</li>			        
+								<li><b class="icon-radio-unchecked"> </b><br>Inscription</li>
+							</ul#}<br>
+		                		                			                		
+		                		<table>
+		                				<tr><th colspan="2"><span class="icon-notification"> </span> <span class="red_color">
+		                					{{ form_errors(form) }}	
+                                            {{ form_errors(form.civilite) }}
+                                            {{ form_errors(form.nom) }}
+                                            {{ form_errors(form.prenom) }}
+                                            {{ form_errors(form.phone) }}
+                                            {{ form_errors(form.cin) }}
+                                            {{ form_errors(form.phone) }}
+                                            {{ form_errors(form.adresse) }}
+                                            {{ form_errors(form.login) }}
+                                            {{ form_errors(form.password) }}
+                                            {{ form_errors(form.centre.nom) }}
+                                            {{ form_errors(form.centre.nbTerrain) }}
+                                            {{ form_errors(form.centre.ville) }}
+                                            {{ form_errors(form.centre.region) }}
+                                            {{ form_errors(form.centre.description) }}
+                                            
+                                        </span></th></tr>
+                                        {% for message in app.session.flashbag.get('info') %}
+	                                       <tr>
+	                                           <th colspan="2" style="text-align:center; background:#2ecc71; border-radius:4px; color:#fff;">{{ message }}</th>
+	                                       </tr>
+	                                   {% endfor %}
+	                                   {% for message in app.session.flashbag.get('testmail') %}
+	                                       <tr>
+	                                           <th colspan="2" style="text-align:center; background:#e74c3c; border-radius:4px; color:#fff;">{{ message }}</th>
+	                                       </tr>
+	                                   {% endfor %}
+		                				<tr>
+		                    				<th>{{ form_label(form.civilite, "Civilité") }} :</th>
+		                    				<td>{{ form_widget(form.civilite) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.nom, "Nom") }} :</th>
+		                    				<td>{{ form_widget(form.nom) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.prenom, "Prénom") }} :</th>
+		                    				<td>{{ form_widget(form.prenom) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.cin, "CIN") }} :</th>
+		                    				<td>{{ form_widget(form.cin) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.phone, "Télephane") }} :</th>
+		                    				<td>{{ form_widget(form.phone) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.adresse, "Adresse") }} :</th>
+		                    				<td>{{ form_widget(form.adresse) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.login, "Email") }} :</th>
+		                    				<td>{{ form_widget(form.login) }}</td>
+		                    			</tr>
+		                    			<tr>
+		                    				<th>{{ form_label(form.password, "Mot de passe ") }} :</th>
+		                    				<td>{{ form_widget(form.password) }}</td>
+		                    			</tr>
+		                		</table><br>
+		                        <aside style="text-align:center;">                               
+		                                  	<a class="button" href ="javascript:progressbar2()">Suivant</a>
+		                                   <button type="reset">Annuler</button>
+		                        </aside><br>                               
+		                
+		                </div>
+
+					<!--***************************************************************************************-->
+
+					<!--***********************************progressbar2****************************************-->
+					
+					<div id="f_terrain" class="booking">	                
+	                	<h1 style="background:#333; color:#2ecc71; padding: 13px; text-align:center;">Créez votre centre du football </h1>
+
+	                	{#<ul id="pb2" style="" class="progressbar">
+							<li class="active"><b class="icon-radio-unchecked"></b><br>Vos&nbsp;coordonnées</li>
+							<li><b class="icon-radio-checked"></b><br>Vos centre</li>			        
+							<li><b class="icon-radio-unchecked"></b><br>Inscription</li>
+						</ul>#}
+
+	                		<br>
+	                		<table>
+	                				<tr>
+	                    				<th>{{ form_label(form.centre.nom, "Nom du centre") }} :</th>
+	                    				<td>{{ form_widget(form.centre.nom) }}</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>{{ form_label(form.centre.nbTerrain, "Nombre du terrain") }} :</th>
+	                    				<td>{{ form_widget(form.centre.nbTerrain) }}</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>{{ form_label(form.centre.ville, "Ville du centre") }} :</th>
+	                    				<td>{{ form_widget(form.centre.ville) }}</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>{{ form_label(form.centre.region, "Région du centre") }} :</th>
+	                    				<td>{{ form_widget(form.centre.region) }}</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>{{ form_label(form.centre.description, "Description du centre") }} :</th>
+	                    				<td>{{ form_widget(form.centre.description) }}</td>
+	                    			</tr>
+	                    			<!--<tr>
+					                    <th style="display:inline-block; color:#000; background:#FFF;">Insérer un logo</th>	
+					                </tr>-->
+					               
+					                
+	                		</table>
+	                        <aside style="text-align:center;"><br>
+	                        		<a class="button" href="javascript:progressbar1()"></span>Précédent</a>	
+	                                <!--<button type="submit" onclick="progressbar3()">Suivant</button>-->
+	                                <button type="submit">Valider</button>
+	                                <button type="reset">Annuler</button>
+	                                
+	                        </aside>
+		                                                       
+		                {{ form_end(form) }}
+	                    <br>                    
+	                </div><br>
+
+				</div>
+
+				<div class="nav_left">
+					{{ include("ArenafootballPlateformBundle:php:bar_pub.html.twig") }}
+				</div>
+
+		       	
+		       	<script type="text/javascript">		       	
+			       	function progressbar1(){
+			       		document.getElementById('f_coordonnees').style.display='block';
+			       		document.getElementById('f_terrain').style.display='none';
+			       		document.getElementById('f_inscription').style.display='none';
+			       		document.getElementById('pb1').style.display='block';
+			       		document.getElementById('pb2').style.display='none';
+			       		document.getElementById('pb3').style.display='none';
+			       	}
+			       	function progressbar2(){
+			       		document.getElementById('f_coordonnees').style.display='none';
+			       		document.getElementById('f_terrain').style.display='block';
+			       		document.getElementById('f_inscription').style.display='none';
+			       		document.getElementById('pb1').style.display='none';
+			       		document.getElementById('pb2').style.display='block';
+			       		document.getElementById('pb3').style.display='none';
+			       	}
+			       	function progressbar3(){
+			       		document.getElementById('f_coordonnees').style.display='none';
+			       		document.getElementById('f_terrain').style.display='none';
+			       		document.getElementById('f_inscription').style.display='block';
+			       		document.getElementById('pb1').style.display='none';
+			       		document.getElementById('pb2').style.display='none';
+			       		document.getElementById('pb3').style.display='block';
+			       	}
+		       	</script>    	
+
+	         </div>              
+			</div>
+			<!--footer-->
+			<footer>				
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

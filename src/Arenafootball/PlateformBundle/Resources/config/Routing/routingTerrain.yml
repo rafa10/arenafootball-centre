@@ -1,0 +1,155 @@
+arenafootball_plateform_espace_stadier:
+    path:     /connexion-stadier
+    defaults: { _controller: ArenafootballPlateformBundle:Home:loginStadier }
+
+arenafootball_plateform_espace_stadier_index:
+    path:     /stadier/acceuil
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:indexStadier }
+
+arenafootball_plateform_ajouter_terrain:
+    path:     /créez-centre
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:addStadier }
+
+arenafootball_plateform_espace_stadier_data:
+    path:     /stadier/profil/donnees
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:dataStadier }
+
+arenafootball_plateform_espace_stadier_password:
+    path:     /stadier/profil/changer-mot-de-passe
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:updatePassword }
+
+arenafootball_plateform_espace_stadier_upload:
+    path:     /stadier/profil/images
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:uploadStadier }
+
+arenafootball_plateform_espace_stadier_edit_upload:
+    path:     /stadier/{id}/images-edit
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:editUploadStadier }
+
+arenafootball_plateform_espace_stadier_delete_upload:
+    path:     /stadier/images/{id}
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:deleteUploadStadier }
+#*********************************Route Terrain********************************************* 
+arenafootball_plateform_terrain_reservation:
+    path:     /stadier/centre/reservation
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:bookingTerrain }
+
+arenafootball_plateform_terrain_planning:
+    path:     /stadier/centre/planning
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:planningTerrain }
+
+arenafootball_plateform_terrain_sceance:
+    path:     /stadier/centre/sceance
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:sceanceTerrain }
+
+arenafootball_plateform_terrain_promos:
+    path:     /stadier/centre/promos
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:promoTerrain }
+
+arenafootball_plateform_terrain_academie:
+    path:     /stadier/centre/academie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:newAcademieTerrain }
+
+arenafootball_plateform_terrain_match_video:
+    path:     /stadier/centre/match-video
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:matchVideoTerrain }
+
+arenafootball_plateform_terrain_tarifs:
+    path:     /stadier/centre/tarifs
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:tarifTerrain }
+
+arenafootball_plateform_terrain_bookacademie:
+    path:     /stadier/centre/planning-academie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:academieBookTerrain }
+
+arenafootball_plateform_terrain_matches:
+    path:     /stadier/centre/matches
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:matcheTerrain }
+
+arenafootball_plateform_terrain_abonnement:
+    path:     /stadier/centre/abonnement
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:abonneTerrain }
+
+arenafootball_plateform_terrain_ajout:
+    path:     /stadier/centre/liste-terrain
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:addTerrain }
+#***************************************************************************************
+arenafootball_plateform_terrain_delete:
+    path:     /stadier/centre/{id}/supprimer-terrain
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteTerrain }
+
+arenafootball_plateform_promo_delete:
+    path:     /stadier/centre/{id}/supprimer-promo
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deletePromo }
+
+arenafootball_plateform_new_academie_delete:
+    path:     /stadier/centre/{id}/supprimer-newacademie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteAcademie }
+
+arenafootball_plateform_match_video_delete:
+    path:     /stadier/centre/{id}/supprimer-match-video
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteMatchVideo }
+
+arenafootball_plateform_tarif_delete:
+    path:     /stadier/centre/{id}/supprimer-tarif
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteTarif }
+
+arenafootball_plateform_Planning_delete:
+    path:     /stadier/centre/{id}/supprimer-planning
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deletePlanning }
+
+arenafootball_plateform_Sceance_delete:
+    path:     /stadier/centre/{id}/supprimer-sceance
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteSceance }
+
+arenafootball_plateform_terrain_abonnement_delete:
+    path:     /stadier/centre/{id}/supprimer-abonnement
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteBookAbonnement }
+
+arenafootball_plateform_terrain_matches_delete:
+    path:     /stadier/centre/{id}/supprimer-match
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteBookMatch }
+
+arenafootball_plateform_terrain_bookacademie_delete:
+    path:     /stadier/centre/{id}/supprimer-planning-academie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:deleteBookAcademie }
+#****************************************************************************************
+arenafootball_plateform_tarif_edit:
+    path:     /stadier/centre/{id}/modifier-tarif
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editTarifTerrain }
+
+arenafootball_plateform_terrain_edit:
+    path:     /stadier/centre/{id}/modifier-terrain
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editTerrain }
+
+arenafootball_plateform_Planning_edit:
+    path:     /stadier/centre/{id}/modifier-planning
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editPlanning }
+
+arenafootball_plateform_Sceance_edit:
+    path:     /stadier/centre/{id}/modifier-sceance
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editSceance }
+
+arenafootball_plateform_terrain_promos_edit:
+    path:     /stadier/centre/{id}/modifier-promo
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editPromoTerrain }
+
+arenafootball_plateform_terrain_new_academie_edit:
+    path:     /stadier/centre/{id}/modifier-newacademie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editAcademieTerrain }
+
+arenafootball_plateform_match_video_edit:
+    path:     /stadier/centre/{id}/modifier-match-video
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editMatchVideo }
+
+arenafootball_plateform_terrain_matches_edit:
+    path:     /stadier/centre/{id}/modifier-match
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editBookMatch }
+
+arenafootball_plateform_terrain_abonnement_edit:
+    path:     /stadier/centre/{id}/modifier-abonnement
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editBookAbonnement }
+
+arenafootball_plateform_terrain_bookacademie_edit:
+    path:     /stadier/centre/{id}/modifier-planning-academie
+    defaults: { _controller: ArenafootballPlateformBundle:Terrain:editBookAcademie }

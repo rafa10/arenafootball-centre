@@ -1,0 +1,72 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container ">
+
+			<header>
+            <section class="tickets">                
+                <br>
+                <div class="logo_recu">                                                   
+                    <img src="{{ asset('assets/image/logo.png') }}" width="99" height="106" alt="logo"/><br>
+                </div>                               
+                <h1 style="color:#000; text-align:center;">Réçu de réservation</h1> 
+                <hr>
+                <p style="text-align:center;" class="text_corps3">
+                    <b>N°</b>:&nbsp;{{ id }}
+                </p>                 
+                <p style="text-align:center;" class="text_corps3">
+                    <b>Nom du centre</b>:&nbsp;{{ centre }}&nbsp;&nbsp;
+                    <b>Nom du Terrain</b>:&nbsp;{{ terrain }}
+                </p>
+                <p style="text-align:center; " class="text_corps3">
+                    <b>Nom et Prénom</b>:&nbsp;{{ clientN }}&nbsp;{{ clientP }}&nbsp;&nbsp;
+                    <b>Date de réservation</b>:&nbsp;{{ date|date('d-m-Y') }}
+                </p>
+                <p style="text-align:center; " class="text_corps3">
+                    <b>Temps de réservation</b>:&nbsp;{{ time|date('H:i') }}&nbsp;&nbsp;
+                    <b>Tarif de réservation</b>:&nbsp;{{ prix }}.00 TND
+                </p>
+                <aside style="text-align:center;">                                                      
+                    <img src="{{ asset('assets/image/1.png') }}" width="900" alt="logo"/>                                        
+                </aside>
+                <div style="color:#000; text-align:centre; padding:20px;" class="text_corps3"><b>Rappel:</b> Les chaussures à crampons sont interdites, veuillez vous munir de chaussure de tennis ou de stabilisé à semelle plate.Le ballon est fournis ainsi que les dossards. </div>
+                <div style="margin-top:-10px; text-align:center;" class="item-icon">
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football118.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football135.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/circular276.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/running33.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football124.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football96.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football30.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/soccer71.png') }}" width="70" height="70" alt="icon" /></div>
+                        </div>  
+                    </div><br><button onclick="window.print()">Imprimer</button>
+                </section>
+                <br><br><br>
+			</header>
+			
+		</div><!-- /container -->
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            
+        {% endblock %}
+
+{% endblock %}

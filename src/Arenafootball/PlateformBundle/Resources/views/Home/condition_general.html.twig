@@ -1,0 +1,86 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Condition générale - {{ parent() }}{% endblock %}
+
+{% block body %}
+		<div class="container">
+			<!--header-->
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_website_content.html.twig") }} 	
+			<!--content-->
+			<div class="main">	
+
+				<div class="column tow_small ">
+
+		        	<!--<p class="text_corps" ><strong>Réserver vos matche</strong></p>-->
+					<!--<p class="text_corps2" >Conculter ou Réserver vos matche </p>-->	
+					
+					<div class="item_icon">											
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img  src="{{ asset('assets/image/football96.png') }}" width="70" height="70" alt="icon"/></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-paste"> </span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-stopwatch"> </span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-calendar"></span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/football1183.png') }}" width="70" height="70" alt="icon"/></div>
+						</div>
+					</div>      	
+		        	
+		        </div>		        
+		        <!--<div id="hero" class="row center"></div> -->
+		       <div class="column instruction">	
+
+		       <div class="nav_left">
+					<br>
+				</div>
+
+				<div class="content_center"><br>
+			       	<h2 class="text_corps2">Condition générale </h2>
+			       	<div class="text_corps3">
+			       		 Aucun remboursement de la cotisation ne pourra être effectué au-delà de la première journée du championnat.
+
+						Soccer plus se réserve le droit d’exclure tout joueur ou équipe si un manquement à l’éthique sportive était constaté.
+
+						Seul soccer plus est habilité à statuer sur les problèmes administratifs ou techniques survenant au cours de la compétition (réserve technique, qualification d’un joueur, etc … ).<br>
+
+						Tout joueur exclu pour attitude et conduite anti-sportive, ne pourra plus participer dans la compétition et son équipe sera dans l’impossibilité de le remplacer, néanmoins l’équipe pourra continuer la compétition.<br>
+
+						Le championnat est réservé aux personnes majeures uniquement ou pour mineur a partir de 16 ans avec accord parental.
+
+						Seul les joueurs inscrits au début de la compétition sont habilités à jouer les rencontres du championnat.<br>
+
+						Aucune équipe n’est autorisée à aligner des joueurs lors d’une rencontre de championnat sansl’avoir assuré au préalable.<br>
+
+						La pratique du soccer est déconseillée aux personnes cardiaques et aux femmes enceintes.<br>
+			       	</div>		       		
+			       	      
+				</div>
+				<div class="nav_right"></div>
+			</div>
+		</div>
+
+			<!--footer-->
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

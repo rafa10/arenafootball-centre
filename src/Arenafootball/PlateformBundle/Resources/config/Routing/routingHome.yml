@@ -1,0 +1,59 @@
+arenafootball_plateform_homepage:
+    path:     /
+    defaults: { _controller: ArenafootballPlateformBundle:Home:index }
+
+arenafootball_plateform_reserver_terrain:
+    path:     /reservez-terrain
+    defaults: { _controller: ArenafootballPlateformBundle:Home:reserverTerrain }
+
+arenafootball_plateform_reserver_terrainbyCentre:
+    path:     /reservez-centre/{id}
+    defaults: { _controller: ArenafootballPlateformBundle:Home:reserverTerrainByCentre }
+
+arenafootball_plateform_search_match:
+    path:     /chercher-terrain
+    defaults: { _controller: ArenafootballPlateformBundle:Home:searchMatchByDate }
+
+arenafootball_plateform_reserver_client:
+    path:     /réservez-terrain/dsf{centre}987456/dfsdf{client}3258/dfs8{prix}78954/dd{terrain}654128/125{dateR}7895/dfd{timeR}632/
+    defaults: { _controller: ArenafootballPlateformBundle:Home:reserverClient }
+
+arenafootball_plateform_offre:
+    path:     /nos-offre
+    defaults: { _controller: ArenafootballPlateformBundle:Home:nosOffre }
+
+arenafootball_plateform_terrain:
+    path:     /nos-centre/
+    defaults: { _controller: ArenafootballPlateformBundle:Home:nosTerrain }
+
+arenafootball_plateform_video:
+    path:     /match-video/
+    defaults: { _controller: ArenafootballPlateformBundle:Home:videoTerrain }
+
+arenafootball_plateform_centre:
+    path:     /nos-centre/{region}
+    defaults: { _controller: ArenafootballPlateformBundle:Home:searchTerrain }
+
+arenafootball_plateform_centre_byName:
+    path:     /nos-centre/recherche/
+    defaults: { _controller: ArenafootballPlateformBundle:Home:searchTerrainByCentre }
+
+arenafootball_plateform_condition:
+    path:     /condition-generale
+    defaults: { _controller: ArenafootballPlateformBundle:Home:conditionGeneral }
+
+arenafootball_plateform_contactez_nous:
+    path:     /contactez-nous
+    defaults: { _controller: ArenafootballPlateformBundle:Home:sendMail }
+#*********************************récuperation mot de passe************************************************#
+arenafootball_plateform_password_client:
+    path:     /forgot-password-client
+    defaults: { _controller: ArenafootballPlateformBundle:Home:sendLoginClient }
+
+arenafootball_plateform_password_stadier:
+    path:     /forgot-password-stadier
+    defaults: { _controller: ArenafootballPlateformBundle:Home:sendLoginStadier }
+#*********************************deconnexion***************************************************
+arenafootball_plateform_logout:
+    path:     /deconnexion
+    defaults: { _controller: ArenafootballPlateformBundle:Home:logout}

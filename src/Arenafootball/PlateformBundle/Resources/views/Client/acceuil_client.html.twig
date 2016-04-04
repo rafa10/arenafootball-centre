@@ -1,0 +1,294 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_client.html.twig") }} 
+				
+			
+			<div class="main">
+			
+			<div class="column instruction">
+                 
+               
+               	
+               	{#{ include("ArenafootballPlateformBundle:php:search_date.html.twig") }#}
+               		
+               
+               
+               <div class="content_completed">
+               	
+               	<div class="column three_small">
+		        	<!--<p class="text_corps" ><strong>Ajouter votre stade des maintemant</strong></p>
+					<p class="text_corps2" >Accéder ou Créer un espace personnel pour la gestion de votre stade </p>-->
+					<div  class="item-icon">
+						<br>
+						<div class="post_small">							
+							<div class="icon_small"><span class="icon-feed2"> </span></div>
+						</div>
+						<div class="post_text move_bord">
+							<div class="icon_small">
+								<span class="post_content ">{{ Abooking|length }} <span class="info_bord">Abonnements</span></span>
+							</div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/football1183.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_text red_bord">
+							<div class="icon_small">
+								<span class="post_content">{{ Mbooking|length }} <span class="info_bord">Matches</span></span>
+							</div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-tags"> </span></div>
+						</div>
+						<div class="post_text orange_bord">
+							<div class="icon_small">
+								<span class="post_content">0<span class="info_bord">TND</span></span>
+							</div>
+						</div>
+					</div>
+				</div>			
+				
+				<div style="width:85%;" class="componentS">
+					<table>
+						<thead>{{ include("ArenafootballPlateformBundle:php:book_match_abonne.html.twig") }}
+							<tr>								
+								<th class="add" style="width:50%;">
+									<a style="text-decoration:none;  color:#FFF;" href="javascript:clickMatche();">
+										<b class="icon-uniE600"> </b>Mes matches</a>
+								</th>
+								<th class="add" style="width:50%;">
+									<a style="text-decoration:none; color:#FFF;" href="javascript:clickAbonne();">
+										<b class="icon-feed2"> </b>Mes abonnements</a>
+								</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+
+				<div id="Amatche" style="margin-top:-100px; width:85%;" class="component">
+					<table>
+						<thead>
+							<tr>
+								<th style="text-align:left;"><b class="icon-office"> </b><b>Centre</b></th>
+								<th><b class="icon-calendar"> </b><b>Date</b></th>
+								<th><b class="icon-stopwatch"> </b><b>Temps</b></th>
+								<th><b class="icon-tags"> </b><b>Tarif</b></th>
+								<th><b class="icon-spinner"> </b><b>Etat</b></th>
+								<th><b class="icon-paste"> </b> </th>							
+							</tr>
+						</thead>					
+
+						{% for item in Mbooking %}								
+						<tbody>
+							<tr>
+								<td style="text-align:left;">									
+									<b>{{ item.centre.nom }}</b>&nbsp;({{ item.terrain.nom }})
+									<!--<img src="{{ asset('assets/image/football96.png') }}" width="30" height="30">-->
+								</td>
+								<td class="user-mobile">{{ item.date|date('d-m-Y') }}</td>
+								<td class="user-mobile">{{ item.time|date('H:s') }}</td>
+								<td class="user-name"><b>{{ item.prix }}</b> TND</td>
+								{% if item.date|date('U') >= "now"|date('U')  %}
+										<td style="text-align: center; background:#98FB98; border-bottom:1px solid #fff;">
+											Disponible
+										</td>
+								{% elseif item.date|date('d-m-Y') == "now"|date('d-m-Y') and item.time|date('H:i') > "now"|date('H:i') %}			<td style="text-align: center; background:#FFC0CB; border-bottom:1px solid #fff;">
+											Disponible
+										</td>
+								{% else  %}
+										<td style="text-align: center; background:#C0C0C0; border-bottom:1px solid #fff;">
+											Non disponible
+										</td>
+								{% endif %}
+								<td>
+									{% if item.date|date('U') > "now"|date('U') %}	
+										<a href="{{ path('arenafootball_plateform_espace_client_tickets', {
+											 'id': item.id,
+											 'centre': item.centre.nom,
+											 'terrain': item.terrain.nom,
+											 'clientN': item.client.nom, 
+											 'clientP': item.client.prenom,  
+											 'date': item.date|date('d-m-Y'),
+											 'time': item.time|date('H:s'),
+											 'prix': item.prix,  
+											}) }}">
+											<button type="submit"><b class="icon-print"></b></button>
+										</a>
+								{% elseif item.date|date('d-m-Y') == "now"|date('d-m-Y') and item.time|date('H:i') > "now"|date('H:i') %}	
+										<a href="{{ path('arenafootball_plateform_espace_client_tickets', {
+											 'id': item.id,
+											 'centre': item.centre.nom,
+											 'terrain': item.terrain.nom,
+											 'clientN': item.client.nom, 
+											 'clientP': item.client.prenom,  
+											 'date': item.date|date('d-m-Y'),
+											 'time': item.time|date('H:s'),
+											 'prix': item.prix,  
+											}) }}">
+											<button type="submit"><b class="icon-print"></b></button>
+										</a>	
+									{% else %}
+										<a class="delete" href="{{ path('arenafootball_plateform_espace_bookM_delete',{'id': item.id}) }}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette réservation: {{ item.id }} ?'));" > <b class="icon-remove"></b> </a>
+									{% endif %}
+								</td>
+							</tr>
+						</tbody>						
+						{% endfor %}
+					</table>
+			</div>
+
+			{#<div id="Aabonnement" class="component hide">
+				<h1 style="color:#777;"><b class="icon-feed2"> </b>Mes abonnements</h1>
+						<table>
+						{% for item in Abooking %}								
+							<thead>
+								<tr>
+									<th style="text-align:left;"><b class="icon-office"> </b>Centre</th>
+									<th><b class="icon-calendar"> </b>Date</th>
+									<th><b class="icon-calendar2"> </b>Jour</th>
+									<th><b class="icon-stopwatch"> </b>Temps</th>
+									<th><b class="icon-spinner"> </b>Etat</th>
+									<th><b class="icon-paste"> </b> </th>							
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>{% for i in 1..item.nbSceance %}{% set j = loop.index0 * 7 %}
+									<td style="text-align:left;">
+										<!--<img src="{{ asset('assets/image/football96.png') }}" width="30" height="30">-->
+										<b>{{ item.centre.nom }}</b>&nbsp;({{ item.terrain.nom }})
+									</td>
+									<td>{{ item.dateGo|date_modify("+" ~ j ~  "day")|date('d-m-Y') }}</td>
+									<td >{{ item.day }}</td>
+									<td >{{ item.time|date('H:i') }}</td>
+									{% if item.dateGo|date_modify("+" ~ j ~  "day")|date('U') < "now"|date('U')  %}	
+									<td style="background:#FFC0CB; border-bottom:1px solid #fff;">									
+										Non disponible
+									</td>
+								{% else  %}
+									<td style="background:#98FB98; border-bottom:1px solid #fff;">									
+										Disponible
+									</td>
+								{% endif %}										
+									<td>
+										{% if item.dateGo|date_modify("+" ~ j ~  "day")|date('U') >= "now"|date('U') %}
+										<a href="{{ path('arenafootball_plateform_espace_client_tickets', {
+											 'id': item.id,
+											 'centre': item.centre.nom,
+											 'terrain': item.terrain.nom,
+											 'clientN': item.client.nom, 
+											 'clientP': item.client.prenom,  
+											 'date': item.dateGo|date_modify("+" ~ j ~  "day")|date('d-m-Y'),
+											 'time': item.time|date('H:s'),
+											 'prix': item.prix,  
+											}) }}">
+											<button type="submit"><b class="icon-print"></b></button>
+										</a>
+									{% else %}
+										<a class="delete" href="{{ path('arenafootball_plateform_espace_bookA_delete',{'id': item.id}) }}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette réservation: {{ item.id }} ?'));" > <b class="icon-remove"></b> </a>
+									{% endif %}
+									</td>
+								</tr>{% endfor %}
+							</tbody>
+							{% endfor %}
+						</table>				
+					</div>#}
+
+					<div id="Aabonnement"  style="margin-top:-100px; width:85%;" class="component hide">
+						<table>
+							<thead>
+							<tr>
+								<th style="text-align:left;"><b class="icon-office"> </b><b>Centre</b></th>
+								<th><b class="icon-list"> </b><b>Séances</b></th>
+								<th><b class="icon-calendar"> </b><b class="icon-stopwatch"> </b></th>
+								<th><b class="icon-calendar2"> </b><b>jour</b></th>
+								<th><b class="icon-tags"> </b><b>Tarif</b></th>
+								<th><b class="icon-spinner"> </b><b>Etats</b></th>
+								<th><b class="icon-paste"> </b> </th>							
+							</tr>
+						</thead>
+							{% for item in Abooking %}
+							<tbody>
+								<tr>
+									<td style="text-align: left;"><b>{{ item.centre.nom }}</b>&nbsp;({{ item.terrain.nom }})</td>
+									<td >Séance: {{ item.nbSceance }}</td>
+									<td >{{ item.dateGo|date('d-m-Y') }}<br>{{ item.time|date('H:i') }}</td>
+									<td >{{ item.day }}</td>
+									<td style="text-align: left;"><b>{{ item.prix }}</b> TND</td>
+									{% if item.dateGo|date('U') >= "now"|date('U')  %}
+										<td style="text-align: center; background:#98FB98; border-bottom:1px solid #fff;">
+											Disponible
+										</td>
+									{% elseif item.dateGo|date('d-m-Y') == "now"|date('d-m-Y') %}
+										<td style="text-align: center; background:#98FB98; border-bottom:1px solid #fff;">
+											Disponible
+										</td>		
+									{% else  %}
+										<td style="text-align: center; background:#FFC0CB; border-bottom:1px solid #fff;">
+											Nom disponible
+										</td>
+								{% endif %}
+									<td>
+									{% if item.dateGo|date('U') > "now"|date('U') %}	
+										<a href="{{ path('arenafootball_plateform_espace_client_tickets', {
+											 'id': item.id,
+											 'centre': item.centre.nom,
+											 'terrain': item.terrain.nom,
+											 'clientN': item.client.nom, 
+											 'clientP': item.client.prenom,  
+											 'date': item.dateGo|date('d-m-Y'),
+											 'time': item.time|date('H:s'),
+											 'prix': item.prix,  
+											}) }}">
+											<button type="submit"><b class="icon-print"></b></button>
+										</a>
+									{% elseif item.dateGo|date('d-m-Y') == "now"|date('d-m-Y') %}	
+										<a href="{{ path('arenafootball_plateform_espace_client_tickets', {
+											 'id': item.id,
+											 'centre': item.centre.nom,
+											 'terrain': item.terrain.nom,
+											 'clientN': item.client.nom, 
+											 'clientP': item.client.prenom,  
+											 'date': item.dateGo|date('d-m-Y'),
+											 'time': item.time|date('H:s'),
+											 'prix': item.prix,  
+											}) }}">
+											<button type="submit"><b class="icon-print"></b></button>
+										</a>	
+									{% else %}
+										<a class="delete" href="{{ path('arenafootball_plateform_espace_bookM_delete',{'id': item.id}) }}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette réservation: {{ item.id }} ?'));" > <b class="icon-remove"></b> </a>
+									{% endif %}
+								</td>
+								</tr>
+							</tbody>
+						{% endfor %}
+						</table>				
+					</div>
+
+			</div>
+		    </div>
+			</div>
+			<!--footer-->
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

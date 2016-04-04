@@ -1,0 +1,106 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <body>
+        <div class="container">
+
+            {{ include("ArenafootballPlateformBundle:Menu:header_menu2.html.twig") }}
+				
+			<header>
+                <aside style="text-align:center;">                                  
+                    <img class="logo_z_index" src="{{ asset('assets/image/logo.png')}}" width="99" height="106" alt="logo"/>                    
+                </aside>
+                
+                <h1 style="color:#e74c3c; text-align:center;">Espace administrateur</h1>               
+                <h4 style="color:#777; text-align:center;">Connectez-vous administrateur </h4>                
+                
+                <div id="form_auth" class="form_auth">
+                	<form name ="ajout" method="POST" action="">
+                	        <br>       		
+                		<table >
+                			<tr>
+                				<td style="text-align:center;">                				
+									<div ><img  src="{{ asset('assets/image/super_admin.png') }}" width="95" height="95" alt="icon" /></div>
+						        </td>
+                            </tr>
+                             {% if message is defined %}
+                                <tr>
+                                    <td class="red_bord" style="text-align:center; border-radius:4px; color:#FFF;">{{ message }}</td>
+                                </tr>
+                            {% endif %}
+                			<tr>                				
+                				<td> <input type="email" name="username" placeholder="Nom d'utilisateur" required/> </td>
+                			</tr>
+                			<tr>                				
+                				<td> <input type="password" name="password" placeholder="Mot de passe" required/> </td>
+                			</tr>
+                		</table>
+                        <aside style="text-align:center;"><br>                               
+                            <button style="width:75%;" type="submit">Connexion</button>                                   
+                        </aside>                               
+                	</form>
+                	<p style="text-align:center;">
+                	 	<a style="color:#6FC8E3;" href="javascript:clickForm();">Mot de passe oublié ?</a><br><br>                		
+                	</p><br>
+                </div>               
+
+                	 <script type="text/javascript">
+		                function clickForm(){
+		                	 document.getElementById('form_auth').style.display='none' ;
+		                	 document.getElementById('form_rec').style.display='block' ;
+		                }
+		                function returnForm(){
+		                	 document.getElementById('form_auth').style.display='block' ;
+		                	 document.getElementById('form_rec').style.display='none' ;
+		                }
+	                </script>
+
+                <!-- form mot de passe oublier-->
+
+                <div id="form_rec" class="form_auth" style="display:none;">
+                	<form name ="ajout" method="post" action="#">
+                	        <br>       		
+                		<table>
+                			<tr>
+                				<td style="text-align:center;">
+                					<div><img  src="{{ asset('assets/image/super_admin.png') }}" width="95" height="95" alt="icon" /></div>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;">   															        
+						        <h4> Saisissez votre adresse pour réinitialiser<br>le mot de passe du compte. </h4>
+						        </td>
+                			</tr>
+                			<tr>                				
+                				<td> <input type="email" name="login" placeholder="Nom d'utilisateur" required/> </td>
+                			</tr>                			        			
+                		</table>
+                        <aside style="text-align:center;"><br>                               
+                            <button style="width:75%;" type="submit">Réinitialiser</button>                                   
+                        </aside>                               
+                	</form>
+                	<p style="text-align:center;">
+                	 	<a style="color:#6FC8E3;" href="javascript:returnForm();">Retour</a><br>                		
+                	</p><br>
+                </div>
+                <br><br><br>
+			</header>
+
+        </div><!-- /container -->       
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/date_heur.js') }}"></script>
+            <script src="{{ asset('assets/js/classie.js') }}"></script>
+            <script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+            <script>
+                new gnMenu( document.getElementById( 'gn-menu' ) );
+            </script>
+        {% endblock %}
+
+{% endblock %}
+

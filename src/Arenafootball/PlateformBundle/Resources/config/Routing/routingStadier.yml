@@ -1,0 +1,31 @@
+arenafootball_plateform_espace_stadier:
+    path:     /connexion-stadier
+    defaults: { _controller: ArenafootballPlateformBundle:Home:loginStadier }
+
+arenafootball_plateform_espace_stadier_index:
+    path:     /stadier/acceuil
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:indexStadier }
+
+arenafootball_plateform_ajouter_terrain:
+    path:     /créez-centre
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:addStadier }
+
+arenafootball_plateform_espace_stadier_data:
+    path:     /stadier/profil/donnees
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:dataStadier }
+
+arenafootball_plateform_espace_stadier_password:
+    path:     /stadier/profil/changer-mot-de-passe
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:updatePassword }
+
+arenafootball_plateform_espace_stadier_upload:
+    path:     /stadier/profil/images
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:uploadStadier }
+
+arenafootball_plateform_espace_stadier_edit_upload:
+    path:     /stadier/{id}/modifier-image
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:editUploadStadier }
+
+arenafootball_plateform_espace_stadier_delete_upload:
+    path:     /stadier/images/{id}
+    defaults: { _controller: ArenafootballPlateformBundle:Stadier:deleteUploadStadier }

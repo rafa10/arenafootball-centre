@@ -1,0 +1,530 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Nos terrain - {{ parent() }}{% endblock %}
+
+
+{% block script %}
+			
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			{#<script type="text/javascript" src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>#}
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+			{#<script src="{{ asset('assets/js/app.js') }}"></script>#}
+
+{% endblock %}
+
+{% block body %}
+	
+	<body>
+		<div class="container">
+		
+		<div class="main">
+			<!--header-->
+			  {{ include("ArenafootballPlateformBundle:Menu:header_menu_website_content.html.twig") }} 
+			<!--content-->
+			
+			<div class="main">	
+
+				<div class="column three_small">
+
+		        	<!--<p class="text_corps" ><strong>Ajouter votre stade des maintemant</strong></p>
+					<p class="text_corps2" >Accéder ou Créer un espace personnel pour la gestion de votre stade </p>-->						
+					<br>
+					<div class="item-icon">
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football118.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football135.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/circular276.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/running33.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football124.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football96.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/football/png/football30.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/soccer71.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>	
+					</div>
+		        </div>
+		        
+		       <div class="column instruction">
+			       	<!--<h2 class="text_corps3" >Conculter ou Réserver vos matche </h2>-->   
+			       	<!--block match chercher-->
+			       	{#<div class="nav_left">
+						
+			       	</div>#}
+
+			       	<div class="content_centre">
+			       		
+			       		
+
+			       		<div style="margin: 0 auto; width:100%;" class="region">
+						<h3 class="text_region">Région sousse</h3>
+							
+							{% for item in regioncentre %}
+								<a style="display:inline-block; border:4px solid #FFF; background:#ecf0f1; padding:10px 8px;" href="{{ path('arenafootball_plateform_centre',{'region': item.nom}) }}">
+									<span class="icon-map">&nbsp;</span>{{ item.nom }}
+								</a>
+							{% endfor %}
+							<br>
+						</div>
+
+						{#<div id="form_search" class="search_booking region">        	
+					        	<h3><a style="color:#FFF;" href="#">Recherche</a></h3><br><br>		        	
+					        	<div  class="form_match">
+					       			<form  name="f" action="{{ path('arenafootball_plateform_centre_byName') }}" method="GET">
+					       				<table>
+					       					<tr>
+						       					<td style="background:#333; border-radius:5px; width:15%; text-align:center; color:#FFF;"><b style="font-size: 20px;" class="icon-location"> </b></td>
+						       					<td>		       					
+						       						<select name="region">	
+					                    				<option value="{{ region }}">{{ region }}</option>
+					                    			</select>
+						       					</td>
+						       				</tr>
+					       					<tr>
+												<td style="background:#333; border-radius:5px; width:15%; text-align:center; color:#FFF;"><b style="font-size: 20px;" class="icon-office"> </b></td>
+												<td>
+													<select name="centre" required>
+				                    					<option style="background:#ccc;" value="">Choisissez un centre...</option>
+				                    					{% for item in centre %}	
+				                    						<option value="{{ item.id }}">{{ item.nom }}</option>
+					       								{% endfor %}	                    						
+				                    			</select>
+												</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td><td>&nbsp;</td>
+											</tr>
+											<tr>					
+											<td colspan="2">
+												<aside style="text-align:center;">
+													<button type="submit"><span class="icon-search"> </span> Recherche</button>
+												</aside>
+											</td>
+											</tr>								
+										</table>	
+									</form><br>
+					       		</div> 
+					    </div>#}
+
+						{#{ include("ArenafootballPlateformBundle:php:bar_pub.html.twig") }#}
+					
+
+
+
+
+				    {% if centre %} 	
+				      {% for item in stadier %}
+				        <div style="margin-top:5px; width:1050px;" id="id_{{item.cin}}" class="component">						
+							<table> 
+								   <thead>
+										<th colspan="3" style="text-align:left; background:#333; " ><span class="icon-office"> </span>
+											<b>{{ item.centre.nom|upper }}</b>
+										</th>
+								   </thead>									
+								   <tbody>
+									    <tr>
+										   <td style="width:200px; border-bottom:1px solid #ccc;">
+											{% for img in photo %}
+												{% if img.centre.id == item.centre.id %}
+													{% if img.alt == 'logo' %}
+												     <img src="{{ asset('uploads/' ~ img.url) }}" alt="{{ img.id}}" width="190" height="170"/>
+													{% endif %}
+											    {% endif %}
+											{% endfor %}										
+										   </td>
+										   <td style="width:650px; border-bottom:1px solid #ccc;">
+												<aside style="text-align:left; font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+													<span style="color:#EE3551;" class="icon-map"> </span><b>Région:</b> 
+													<span style="color:#000;">{{ item.centre.region }}</span>
+												</aside>
+												<aside style="text-align:left; font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+													<span style="color:#EE3551;" class="icon-location2"> </span><b>Adresse:</b> 
+													<span style="color:#000;">{{ item.adresse}}</span>
+												</aside>
+												<aside style="text-align:left; font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+													<span style="color:#EE3551;" class="icon-phone"> </span><b>Infoline:</b> 
+													<span style="color:#000;">{{ item.phone }}</span>
+												</aside>
+												<aside style="text-align:left; font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+													<span style="color:#EE3551;" class="icon-mail"> </span><b>Email:</b> 
+													<span style="color:#000;">{{ item.login }}</span>
+												</aside>
+												<!--<aside style="text-align:left;"><span class="icon-star2"> </span>
+													<span style="color:#000;"></span><br>
+												</aside>-->	
+											</td>
+											{#********************************button d'informaton*******************************#}
+											<td style="width:200px; border-bottom:1px solid #ccc;">
+												<aside  id="id_{{item.id}}" style=" font-size:12px;">
+												   <a href="{{ path('arenafootball_plateform_reserver_terrainbyCentre', { 'id':item.centre.id}) }}">
+												   	<button><b class="icon-paste"> </b>&nbsp;&nbsp;Réservez terrain&nbsp;&nbsp;</button></a><br><br>
+												   <button class="class_{{item.id}}"><b class="icon-info"> </b>Plus d'information </button>
+												</aside>
+												<aside  id="id_{{item.nom}}" style="font-size:12px; display:none;">
+													<a href="{{ path('arenafootball_plateform_reserver_terrainbyCentre', { 'id':item.centre.id}) }}">
+												   	<button><b class="icon-paste"> </b>&nbsp;&nbsp;Réservez terrain&nbsp;&nbsp;</button></a><br><br>
+													<button class="class_{{item.nom}}"><b class="icon-cancel-circle"> </b> </button>
+											    </aside>
+											</td>
+										
+										</tr>
+						{#*********************************Promotion****************************************#}
+										
+									{% if promo %}
+									{% for pro in promo  %}
+									{% if pro.centre.id == item.centre.id and pro.promoDate|date('U') >= "now"|date('U') %}	
+										<tr>
+											<th style="width:10%; background:#fff; border-bottom:1px solid #ccc;">
+												<img src="{{ asset('assets/image/discount4.png') }}" alt="promotion" width="60" height="60"/>
+										   	</th>
+										    <td colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+										   		<aside style="text-align:left;"> 
+												    <h3><span style="color:#2ecc71;" class="icon-tags"> </span>
+												   		Offre promotionnel
+												   	</h3>
+												</aside>
+												<aside style="text-align:left;"> 
+													<span style="font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+														{{ pro.description|striptags }}
+													</span>
+												</aside>												
+												<aside style="text-align:left; font-size:12px; ">
+													
+													<span class="icon-calendar"> </span> 
+													<span style="color:#000;">{{ pro.promoDate|date('d-m-Y') }}</span>
+													&nbsp;
+													<span class="icon-stopwatch"> </span> 
+													<span style="color:#000;">{{ pro.promoTime|date('H:i') }}</span>
+													&nbsp;
+													<span class="icon-tags"> </span>
+													<span style="color:#000;"><b>{{ pro.prix }}</b>.00 TND</span>
+
+												</aside>
+												
+											</td>
+										</tr>
+									{% elseif pro.centre.id == item.centre.id and pro.promoDate|date('U') < "now"|date('U') %}
+										<tr>
+											<th style="width:10%; background:#fff; border-bottom:1px solid #ccc;">
+												<img src="{{ asset('assets/image/discount4.png') }}" alt="promotion" width="60" height="60"/>
+										   	</th>
+										    <td colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+										   		<aside style="text-align:left;"> 													
+													<h3><span style="color:#7f8c8d;" class="icon-tags"> </span>
+														Offre promotionnel
+													</h3>
+												</aside>
+												<aside style="text-align:left;">
+													<span style="font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+														{{ pro.description|striptags }}
+													</span>
+												</aside>											
+												<aside style="text-align:left; font-size:12px; ">
+													
+													<span class="icon-calendar"> </span> 
+													<span style="color:#000;">{{ pro.promoDate|date('d-m-Y') }}</span>
+													&nbsp;
+													<span class="icon-stopwatch"> </span> 
+													<span style="color:#000;">{{ pro.promoTime|date('H:i') }}</span>
+													&nbsp;
+													<span class="icon-tags"> </span>
+													<span style="color:#000;"><b>{{ pro.prix }}</b>.00 TND</span>
+
+												</aside>
+												
+											</td>
+										</tr>	
+									{% endif %}
+									{% endfor %}
+									{% else %}
+									<tr>
+										<th colspan="3" style="background:#fff; border-bottom:1px solid #ccc;">
+											<aside style="text-align:left;"><span class="icon-notification"> </span> 
+												<span style="color:#000;">Aucun promotion disponible</span>
+											</aside>
+										</th>
+									</tr>
+									{% endif %}
+
+						{#*********************************News académie****************************************#}			
+									{% if newacademie %}
+									{% for new in newacademie  %}
+									{% if new.centre.id == item.centre.id and new.dateGo|date('U') >= "now"|date('U') %}	
+										<tr>
+											<th style="width:10%; background:#fff; border-bottom:1px solid #ccc;">
+												<img src="{{ asset('assets/image/News.png') }}" alt="promotion" width="60" height="60"/>
+										   	</th>
+										    <td colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+										   		<aside style="text-align:left;"> 
+												    <h3><span style="color:#2ecc71;" class="icon-users"> </span>
+												   		{{ new.titre }}
+												   	</h3>
+												</aside>
+												<aside style="text-align:left;"> 
+													<span style="font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+														{{ new.description|striptags }}
+													</span>
+												</aside>												
+												<aside style="text-align:left; font-size:12px; ">
+													
+													<span class="icon-calendar"> </span> 
+													<span style="color:#000;">{{ new.dateGo|date('d-m-Y') }}</span>
+												</aside>
+												
+											</td>
+										</tr>
+									{% elseif new.centre.id == item.centre.id and new.dateGo|date('U') < "now"|date('U') %}
+											<th style="width:10%; background:#fff; border-bottom:1px solid #ccc;">
+												<img src="{{ asset('assets/image/News.png') }}" alt="promotion" width="60" height="60"/>
+										   	</th>
+										    <td colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+										   		<aside style="text-align:left;"> 
+												    <h3><span style="color:#2ecc71;" class="icon-users"> </span>
+												   		{{ new.titre }}
+												   	</h3>
+												</aside>
+												<aside style="text-align:left;"> 
+													<span style="font-size: 1.2em; line-height: 1.3; font-weight: 300;">
+														{{ new.description|striptags }}
+													</span>
+												</aside>												
+												<aside style="text-align:left; font-size:12px; ">
+													
+													<span class="icon-calendar"> </span> 
+													<span style="color:#000;">{{ new.dateGo|date('d-m-Y') }}</span>
+												</aside>
+												
+											</td>
+										</tr>	
+									{% endif %}
+									{% endfor %}
+									{% else %}
+									<tr>
+										<th colspan="3" style="background:#fff; border-bottom:1px solid #ccc;">
+											<aside style="text-align:left;"><span class="icon-notification"> </span> 
+												<span style="color:#000;">Aucun news disponible pour l'académie</span>
+											</aside>
+										</th>
+									</tr>
+									{% endif %}
+						{#********************************button d'informaton*******************************
+
+										<tr>
+											<td colspan="2" style="background:#fff; border-bottom:1px solid #ccc;">
+												<aside  id="id_{{item.id}}" style=" font-size:12px;">
+												   <a href="{{ path('arenafootball_plateform_reserver_terrain') }}">
+												   	<button><b class="icon-paste"> </b>Réservez terrain</button></a>
+												   <button class="class_{{item.id}}"><b class="icon-info"> </b>Plus d'information </button>
+												</aside>
+												<aside  id="id_{{item.nom}}" style="font-size:12px; display:none;">
+													<a href="{{ path('arenafootball_plateform_reserver_terrain') }}">
+												   	<button><b class="icon-paste"> </b>Réservez terrain</button></a>
+													<button class="class_{{item.nom}}">Retour </button>
+											    </aside>
+											</td>
+										</tr>	#}
+									</tbody>
+							</table>
+					    </div>
+							<!--**********************************************************************-->
+							<script type="text/javascript">
+
+								$( ".class_{{item.id}}" ).click(function() {
+									document.getElementById('id_{{item.cin}}').style.display='block' ;
+									document.getElementById('id_{{item.password}}').style.display='block' ;
+				    				document.getElementById('id_{{item.login}}').style.display='block' ;
+				    				document.getElementById('id_{{item.nom}}').style.display='block' ;
+				    				document.getElementById('id_{{item.id}}').style.display='none' ; 
+									});
+
+								$( ".class_{{item.nom}}" ).click(function() {
+									document.getElementById('id_{{item.password}}').style.display='none' ;
+									document.getElementById('id_{{item.nom}}').style.display='none' ;
+									document.getElementById('id_{{item.login}}').style.display='none' ;
+									document.getElementById('id_{{item.cin}}').style.display='block' ;
+									document.getElementById('id_{{item.id}}').style.display='block' ;
+									});
+									
+								</script>
+
+						<div id="id_{{item.login}}" style="display:none; margin-top:-60px; width:1050px;;" class="component">
+								<table>
+									<tbody>	
+										<tr>
+											<td colspan="3" style="background:#FFF; border-bottom:1px solid #ccc;">
+												{{ include("ArenafootballPlateformBundle:php:slideshow_terrain.html.twig") }} 
+											</td>
+										</tr>
+										{% for ter in terrain %}
+									    {% if ter.centre.id == item.centre.id %}
+										<tr>
+											<th style="width:20%; background:#fff; border-bottom:1px solid #ccc;">
+												<img src="{{ asset('assets/image/football96.png') }}" alt="terrain" width="70" height="60" alt="terrain"/>
+											</th>
+											<th style="background:#fff; width:40%; border-bottom:1px solid #ccc;" >
+												<aside style="text-align:left; color:#000">
+													<b>Terrain:</b> {{ ter.nom }}<br>
+													<b>Capacité:</b> {{ ter.capacite }} Personne
+												</aside>
+											</th>											
+											<th style="background:#fff; width:40%; border-bottom:1px solid #CCC;">
+												<div style="text-align:center;" id="votes_{{ter.id}}">
+													<script type="text/javascript" src="http://services.supportduweb.com/votes/{{ter.id}}-1.js">
+												</script>
+												</div>
+											</th>
+									    </tr>
+									    {% endif %}
+										{% endfor %}
+									    <tr>
+									    	<th colspan="3" style="background:#fff; border-bottom:1px solid #fff;">
+									    		<aside style="text-align:left;">
+													<b><span style="color:#EE3551;" class="icon-file3"> </span>Description :</b>
+												</aside>
+									    	</th>
+									    </tr>
+									    <tr>
+									    	<td colspan="3" style="background:#fff; border-bottom:1px solid #CCC;">
+									    		<aside style="text-align:left;">
+													<span style="color:#000;">{{ item.centre.description|nl2br }}</span>
+												</aside>
+									    	</td>
+									    </tr>
+										<tr>
+											<td colspan="3" style="background:#FFF; border-bottom:none; text-align:left; width:45%;" >
+												<!--******************************google map**********************************-->
+
+												<script >
+
+													var geocoder;
+													var map;
+													var query = '{{item.adresse}}';
+													function initialize() {
+													  geocoder = new google.maps.Geocoder();
+													  var mapOptions = {
+													    zoom: 12
+													  }
+													  map = new google.maps.Map(document.getElementById('map-{{item.id}}'), mapOptions);
+													  codeAddress();
+													}
+
+													function codeAddress() {
+													  var address = query;
+													  geocoder.geocode( { 'address': address}, function(results, status) {
+													    if (status == google.maps.GeocoderStatus.OK) {
+													      map.setCenter(results[0].geometry.location);
+													      var marker = new google.maps.Marker({
+													          map: map,
+													          position: results[0].geometry.location
+													      });
+													    } else {
+													      alert('Geocode was not successful for the following reason: ' + status);
+													    }
+													  });
+													}
+
+													google.maps.event.addDomListener(window, 'load', initialize);
+
+												</script>
+
+												<div style="width:100%; margin: 0px; padding: 0px; border:1px solid #CCC; height:400px;" id="map-{{item.id}}"></div>
+											</td>
+										</tr>
+										<tr>
+									    	<th colspan="3" style="background:#fff; border-bottom:1px solid #fff;">
+									    		<aside style="text-align:left;">
+												<b><span style="color:#EE3551;" class="icon-tags"> </span>Tarifs centre :</b>
+												</aside>
+									    	</th>
+									    </tr>
+									</tbody>		
+								</table>
+																	
+					           	<div  style="margin-top:-49px;" id="id_{{item.password}}">				           			
+						               			                
+						                <table>                               
+			                                <thead>
+			                                    <tr>
+			                                        <th style="background:#ccc;"><b class="icon-list"> </b></th>
+			                                        <th style="background:#ccc;"><b class="icon-stopwatch"> </b> </th>
+			                                        <th style="background:#ccc;"><b class="icon-uniE600"></b></th>
+			                                        <th style="background:#ccc;"><b class="icon-calendar2"> </b></th>
+			                                        <th style="background:#ccc;"><b class="icon-clock"> </b></th>
+			                                        <th style="background:#ccc;"><b class="icon-calendar"> </b></th>
+			                                        <th style="background:#ccc;"><b class="icon-tags"> </b></th>
+			                                    </tr>
+			                                </thead>
+			                            {% for tarif in tarifcentre %}
+			                            	{% if tarif.centre.id == item.centre.id %}
+			                                <tbody>
+			                                    <tr style="background:#FFF;">
+			                                        <td class="user-name">{{ tarif.type }}</td>
+			                                        <td class="user-name">{{ tarif.dureeSceance }}</td>
+			                                        <td class="user-name">{{ tarif.nbSceanceMois }}</td>
+			                                        <td class="user-name">{{ tarif.dureeAbonnement }}</td>
+			                                        <td class="user-name">{{ tarif.horaireSceanceGo|date('H:m') }}H<br>{{ tarif.horaireSceanceEnd|date('H:m') }}H</td>
+			                                        <td class="user-name">{{ tarif.jourSceanceGo }}<br>{{ tarif.jourSceanceEnd }} </td>
+			                                        <td class="user-name">{{ tarif.tarifGroupe }} TND</td>             
+			                                    </tr>
+			                                </tbody>
+			                                {% endif %}
+			                            {% endfor %}    
+		                            </table>					                
+								</div>
+						</div>
+				       	{% endfor %}{% else %}
+
+				       	<div style="margin-top:5px;" class="component"> 	
+							<table>
+								<thead>
+									<th colspan="2" style="text-align:left;" ><span class="icon-office"> </span>
+									</th>
+								</thead>
+								   <tbody>
+									    <tr>										   
+										    <th colspan="2" style="background:#fff; border-bottom:1px solid #ccc;"><br>
+												<aside style="text-align:centre;"><span class="icon-notification"> </span><br>
+													<span style="color:#000;">Aucun centre dans cette région<br><b>{{ region }}</b></span>
+												</aside><br><br>
+											</th>
+										</tr>	
+									</tbody>
+							</table>
+						 </div>
+						{% endif %}
+					</div>     
+			       
+							      
+
+		     </div>  </div>		                   
+			
+
+			</div>
+			<!--footer-->
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }}  
+			</footer> 
+		</div><!-- /container -->		
+		{% block javascript %}			
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+			
+		{% endblock %}
+
+{% endblock %}

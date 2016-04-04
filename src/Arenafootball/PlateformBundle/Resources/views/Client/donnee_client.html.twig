@@ -1,0 +1,97 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_client.html.twig") }}
+
+		<div class="main">
+			
+			<div class="column instruction">
+             
+                 
+              <div class="nav_left"><br></div>
+               
+
+               <div style="width:58%;" class="content_center">
+               	<br>
+               	<div  class="booking" >
+                        {{ form_start(form) }}
+                        <h1 style="background:#333; font-size:1.4em; color:#EE3551; padding:13px; text-align:center;" >Modifiez les informations de votre compte</h1>
+                                <br>                                                                
+                                {{ form_errors(form) }}                                
+                               <table style="border:none; width:70%">                                        
+                                        {% for message in app.session.flashbag.get('info') %}
+                                           <tr>
+                                               <th colspan="2" style="text-align:center; background:#2ecc71; color:#fff;">
+                                                <b class="icon-notification"> </b>{{ message }}
+                                               </th>
+                                           </tr>
+                                        {% endfor %}
+                                        <tr>
+                                        <th style="width:50%;">{{ form_label(form.civilite, "Civilité") }} :</th>
+                                            <td style="width:50%;">{{ form_widget(form.civilite) }}<br>
+                                                <span class="red_color">{{ form_errors(form.civilite) }}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.nom,"Nom") }} :</th>
+                                            <td>{{ form_widget(form.nom) }}
+                                                <span class="red_color">{{ form_errors(form.nom) }}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th >{{ form_label(form.prenom, "Prénom") }} :</th>
+                                            <td>{{ form_widget(form.prenom) }}<br>
+                                                <span class="red_color">{{ form_errors(form.prenom) }}</span>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.phone, "Télephone") }} :</th>
+                                            <td>{{ form_widget(form.phone) }}<br>
+                                                <span class="red_color">{{ form_errors(form.phone) }}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.login, "Email") }} :</th>
+                                            <td>{{ form_widget(form.login) }}<br>
+                                                <span class="red_color">{{ form_errors(form.login) }}</span>
+                                            </td>
+                                        </tr>
+                                        
+                                </table>
+                                <aside style="text-align:center;" ><br>
+                                           {{ form_widget(form.Valider) }}
+                                </aside><br>
+                            {{ form_end(form) }} 
+                    </div> 
+                   </div>
+
+
+               <div class="nav_left"></div>                           
+
+               
+                </div>	
+			</div>
+			<!--footer-->
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+            <script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('assets/js/classie.js') }}"></script>
+            <script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+            <script>
+                new gnMenu( document.getElementById( 'gn-menu' ) );
+            </script>
+        {% endblock %}
+
+{% endblock %} 

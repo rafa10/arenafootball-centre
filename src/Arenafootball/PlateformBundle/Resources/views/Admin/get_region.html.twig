@@ -1,0 +1,93 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_admin.html.twig") }}
+			<header><br>
+
+			<div style="width:60%;" id="form_add" class="booking hide">
+                {{ form_start(form) }}
+                	<h1 style="background:#333; font-size:1.4em; color:#fff; border-radius:4px 4px 0px 0px; padding: 12px; text-align:center;">Ajouter une région</h1>
+                		<br>
+                		<table style="width:70%;">
+                    			<tr>
+                                    <th style="width:50%;">{{ form_label(form.nom, "Nom du région") }} :</th>
+                                    <td style="width:50%;"> {{ form_widget(form.nom) }}</td>
+                                </tr>
+                    			<tr>
+                                    <th>{{ form_label(form.map, "URL map") }} :</th>
+                                    <td> {{ form_widget(form.map) }}</td>
+                                </tr>
+                		</table>
+                        <aside style="text-align:center;"><br>                               
+                            <button type="submit">Suivant</button>
+                            <button  class="return" type="reset">Annuler</button>
+                        </aside><br>
+                {{ form_end(form) }}
+            </div>
+
+			<div id="display_tab" class="component">
+				<h1 style="color:#777;"><b class="icon-earth"> </b>Région du terrains</h1>
+				<table>
+					<thead>
+						<tr>
+							<th style="text-align:left;"><b class="icon-"> </b>ID</th>
+							<th style="text-align:left;"><b class="icon-"> </b>Nom du région</th>
+							<th style="text-align:left;"><b class="icon-"> </b>URL Map</th>		
+							<th><b class="icon-cogs"> </b></th>
+						</tr>
+					</thead>
+					{% for item in regioncentre %}
+					<tbody>
+						<tr>
+							<td style="text-align:left;">{{ item.id }}</td>
+							<td style="text-align:left;">{{item.nom }}</td>
+							<td style="text-align:left;"><b class="icon-map"></b></td>
+							<td>
+								<a class="add" href="#">
+									<i class="icon-plus" style="font-size:14pt;"></i>
+								</a>								
+								<a class="delete" href="#">
+									<i class="icon-remove" style="font-size:14pt;"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+					{% endfor %}
+				</table>
+			</div>
+
+		<script type="text/javascript">
+		$( ".add" ).click(function() {
+			document.getElementById('form_add').style.display='block' ;
+			document.getElementById('display_tab').style.display='none' ;
+		}
+		$( ".return" ).click(function() {
+			document.getElementById('form_add').style.display='none' ;
+			document.getElementById('display_tab').style.display='block' ;
+		}
+		</script>
+			<br>            
+			</header>
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }}  
+			</footer> 
+		</div><!-- /container -->		
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

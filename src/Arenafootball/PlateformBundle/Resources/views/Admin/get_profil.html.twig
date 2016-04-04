@@ -1,0 +1,62 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			
+			
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_admin.html.twig") }} 
+						
+			<header><br>
+                <div style="width:60%;" class="booking">
+                	{{ form_start(form) }}
+                	<h1  style="background:#333; color:#fff; font-size:1.4em; padding: 13px; text-align:center;">Données administrateur</h1>
+                		 <br><br>
+                		<table style="width:70%;">
+                			 <tr>
+                			 	<th style="width:50%;">{{ form_label(form.id, "ID") }} :</th>
+                             	<td style="width:50%;">{{ form_widget(form.id) }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.nom,"Nom") }} :</th>
+                                <td>{{ form_widget(form.nom) }} </td>
+                            </tr>
+                            <tr>
+                                <th >{{ form_label(form.prenom, "Prénom") }} :</th>
+                                <td>{{ form_widget(form.prenom) }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.login, "Login") }} :</th>
+                                <td>{{ form_widget(form.login) }} </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.password, "Mot de passe") }} :</th>
+                                <td>{{ form_widget(form.password) }} </td>
+                            </tr>
+                		</table>
+                        <aside style="text-align:center;"><br>
+                          {{ form_widget(form.Valider) }}
+                        </aside><br>
+                	{{ form_end(form) }}
+                </div><br><br><br>	
+			</header>
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+            <script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('assets/js/classie.js') }}"></script>
+            <script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+            <script>
+                new gnMenu( document.getElementById( 'gn-menu' ) );
+            </script>
+        {% endblock %}
+
+{% endblock %}

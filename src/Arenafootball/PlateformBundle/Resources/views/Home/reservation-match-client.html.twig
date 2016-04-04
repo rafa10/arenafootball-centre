@@ -1,0 +1,234 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Réservez terrain - {{ parent() }}{% endblock %}
+
+{% block body %}
+		<div class="container">
+			<!--header-->
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_website_content.html.twig") }} 	
+			<!--content-->
+			<div class="main">	
+
+				<div class="column tow_small ">
+					<div class="item_icon">											
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img  src="{{ asset('assets/image/football96.png') }}" width="70" height="70" alt="icon"/></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-paste"> </span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-stopwatch"> </span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-calendar"></span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon icon_stade_m_small"><img src="{{ asset('assets/image/football1183.png') }}" width="70" height="70" alt="icon"/></div>
+						</div>
+					</div>      	
+		        	
+		        </div>		        
+		        <!--<div id="hero" class="row center"></div> -->
+		       <div class="column instruction ">
+			       	
+			       	
+			       	<div class="content_center">
+
+						<br>
+							<div id="formulaire" style="width:750px;" class="booking" >
+              				   {{ form_start(form) }}                       
+                        		<h1 style="background:#333; color:#EE3551; padding: 13px; text-align:center;" >Validation </h1>
+                                
+                            	<br>                       
+                            	<table style="width:80%;">
+                            	    <tr>
+                            	 	   <th colspan="2">
+		                					<p style="text-align:left;"><span class="icon-notification"> </span> Pour confirmer  votre réservation en ligne, <b>il faut payer une avance moins de 2h de réservation sinon votre réservation sera annulée.</p>
+                                        </th>
+                                    </tr>
+                                    <tr class="">
+                                        <th>{{ form_label(form.centre, "Non du centre") }} :</th>
+                                        <td>{{ form_widget(form.centre) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:50%;">{{ form_label(form.client, "Client") }} :</th>
+                                        <td style="width:50%;">{{ form_widget(form.client) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ form_label(form.terrain, "Terrain") }} :</th>
+                                        <td>{{ form_widget(form.terrain) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ form_label(form.date, "Date de réservation") }} :</th>
+                                        <td>{{ form_widget(form.date, { 'attr': { 'readonly': 'true' } }) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ form_label(form.time, "Heure de réservation") }} :</th>
+                                        <td class="hide">{{ form_widget(form.time) }}</td>
+                                        <td><input type="text" name="t" value="{{timeR}}" disabled="true" /></td>
+                                    </tr>                              
+                                    <tr>
+                                        <th>{{ form_label(form.prix, "Prix") }}:</th>
+                                        <td>{{ form_widget(form.prix, { 'attr': { 'readonly': 'true' } }) }}  </td>
+                                    </tr>
+                                     <tr class="hide">
+                                        <th>{{ form_label(form.status, "Etats") }}:</th>
+                                        <td>{{ form_widget(form.status) }}  </td>
+                                    </tr>                                    
+                            </table>
+                            <aside style="text-align:center;" ><br>
+                                           <a class="button" href="javascript:history.back()">Retour</a>
+                                           <button onclick="progressbar2()">Valider</button>
+                                          
+                                </aside><br>                               
+                		{{ form_end(form) }}
+					</div><br>
+
+					{#<div id="reservation" style="width:750px;" class="booking" >
+    					<h1 style="background:#333; font-size:1.4em; color:#EE3551; padding: 13px; text-align:center;" >Paiement</h1>
+                                <br>
+                                <table style="width:80%">                                        
+                                                                              
+                                        <tr>
+                                            <th style="width:50%;">Numéro de la carte de crédit :</th>
+                                            <td style="width:50%;"> <input type="text" name="ribe" pattern="[0-9]{20}" required/> </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:50%;">Code confidentiell:</th>
+                                            <td style="width:50%;"> <input type="text" name="cvv" pattern="[0-9]{8}" required/> </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:50%;">Date d'expiration :</th>
+                                            <td style="width:50%;"> <input type="text" name="d/m" placeholder=" ex: 01/07" required/> </td>
+                                        </tr>
+                                        
+                                </table>
+
+                               {# <form action="/charge" method="POST">
+								  <script
+								    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+								    data-image="{{ asset('assets/image/logo.png') }}"
+								    data-name="Arenafootball-centre.com"
+								    data-description="Réservation terrain {{dateR}} | {{timeR}}"
+								    data-amount="{{prix}}00">
+								  </script>
+								</form><br>
+                               
+					</div>#}
+					
+					
+
+
+
+
+				{#<div id="validation" style="display:none;" class="booking" >
+                	<form name ="ajout" method="post" action="#">
+                        <h1 style="background:#333; font-size:1.4em; color:#EE3551; padding: 13px; text-align:center;" >Réservez votre terrain</h1>
+                                <br>                                
+                                <table>
+                                    <tr>
+                                        <th style="display:inline-block; color:#FFF; background:#FFF;">Insérer des imagesInsérer des imagesInsérer </th>                                       
+                                    </tr>
+                                </table>                        
+                                    <p style="color:#2ecc71; text-align:center;"><b style="font-size:1.8em;" class="icon-happy2"></b><br> Votre réservation a été effectué.<p>
+                                <aside style="text-align:center;"><br><br>                              
+                                    <button type="submit" onclick="javascript:location.reload();">Fin</button>
+                                </aside>
+                                <br><br>                              
+               		 </form>
+				</div>#}
+                   
+                       				       		
+						
+			       	</div>
+			       
+			       	</div>
+			       	<!--<h2 class="text_corps3" >Conculter ou Réserver vos matche </h2>-->
+			       	<!--block match chercher-->	
+	                
+					
+				<script type="text/javascript">                
+	                function progressbar1(){
+	                	document.getElementById('booking_matche').style.display='none' ;
+	                	document.getElementById('send_to_connect').style.display='block' ;
+	                	document.getElementById('form_search').style.display='block' ;
+	                    document.getElementById('formulaire').style.display='block';
+	                    document.getElementById('reservation').style.display='none';
+	                    document.getElementById('paiement').style.display='none';
+	                    document.getElementById('validation').style.display='none';
+	                    document.getElementById('pb1').style.display='block';
+	                    document.getElementById('pb2').style.display='none';
+	                    document.getElementById('pb3').style.display='none';
+	                    document.getElementById('pb4').style.display='none';
+	                }
+	                function progressbar2(){
+	                	document.getElementById('booking_matche').style.display='none' ;
+	                	document.getElementById('send_to_connect').style.display='none' ;
+	                	document.getElementById('form_search').style.display='block' ;
+
+	                    document.getElementById('formulaire').style.display='none';
+	                    document.getElementById('reservation').style.display='block';
+	                    document.getElementById('paiement').style.display='none';
+	                    document.getElementById('validation').style.display='none';
+	                    document.getElementById('pb1').style.display='none';
+	                    document.getElementById('pb2').style.display='block';
+	                    document.getElementById('pb3').style.display='none';
+	                    document.getElementById('pb4').style.display='none';
+	                }
+	                function progressbar3(){
+	                	document.getElementById('booking_matche').style.display='none' ;
+	                	document.getElementById('send_to_connect').style.display='none' ;
+	                	document.getElementById('form_search').style.display='block' ;
+
+	                    document.getElementById('formulaire').style.display='none';
+	                    document.getElementById('reservation').style.display='none';
+	                    document.getElementById('paiement').style.display='block';
+	                    document.getElementById('validation').style.display='none';
+	                    document.getElementById('pb1').style.display='none';
+	                    document.getElementById('pb2').style.display='none';
+	                    document.getElementById('pb3').style.display='block';
+	                    document.getElementById('pb4').style.display='none';
+	                }
+	                function progressbar4(){
+	                	document.getElementById('booking_matche').style.display='none' ;
+	                	document.getElementById('send_to_connect').style.display='none' ;
+	                	document.getElementById('form_search').style.display='block' ;
+
+	                    document.getElementById('formulaire').style.display='none';
+	                    document.getElementById('reservation').style.display='none';
+	                    document.getElementById('paiement').style.display='none';
+	                    document.getElementById('validation').style.display='block';
+	                    document.getElementById('pb1').style.display='none';
+	                    document.getElementById('pb2').style.display='none';
+	                    document.getElementById('pb3').style.display='none';
+	                    document.getElementById('pb4').style.display='block';
+	                }
+ 				</script>
+
+						 
+					
+	                <!-- <iframe src="https://activiteez.com/u/rafa.10?minisitePref=embedded&backgroundColor=%23ffffff" style="border: 0" width="800" height="600" frameborder="0" scrolling="auto"></iframe>-->
+	                   		
+		                    
+			</div>
+			<!--footer-->
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer> 
+		</div><!-- /container -->
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

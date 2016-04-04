@@ -1,0 +1,47 @@
+arenafootball_plateform_admin:
+    path:     /connexion-admin
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:authAdmin }
+
+arenafootball_plateform_admin_home:
+    path:     /admin/acceuil
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:indexAdmin }
+
+arenafootball_plateform_admin_data:
+    path:     /admin/profil
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:profilAdmin }
+
+arenafootball_plateform_admin_stadier:
+    path:     /admin/Liste-stadiers
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:stadierAdmin }
+
+arenafootball_plateform_admin_client:
+    path:     /admin/Liste-clients
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:clientAdmin }
+
+arenafootball_plateform_admin_terrain:
+    path:     /admin/Liste-centre
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:terrainAdmin }
+
+arenafootball_plateform_admin_pub:
+    path:     /admin/pub
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:pubAdmin }
+
+arenafootball_plateform_admin_region:
+    path:     /admin/region
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:regionAdmin }
+
+arenafootball_plateform_admin_stadier_edit:
+    path:     /admin/{id}/modif-stadier
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:stadierEditAdmin }
+
+arenafootball_plateform_admin_client_edit:
+    path:     /admin/{id}/modif-client
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:clientEditAdmin }
+
+arenafootball_plateform_admin_stadier_delete:
+    path:     /admin/{id}/stadier
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:stadierDeleteAdmin }
+
+arenafootball_plateform_admin_client_delete:
+    path:     /admin/{id}/client
+    defaults: { _controller: ArenafootballPlateformBundle:Admin:clientDeleteAdmin }

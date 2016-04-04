@@ -1,0 +1,78 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace admin - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_admin.html.twig") }}
+			 
+			<header>
+			<div class="component">
+				<h1 style="color:#777;"><b class="icon-user4"> </b> Liste des stadiers</h1>
+				<table>
+					<thead>
+						<tr>
+							<th style="text-align:left;"><b class="icon-"> </b>ID</th>
+							<th style="text-align:left;"><b class="icon-user4"> </b>Stadier</th>
+							<th style="text-align:left;"><b class="icon-office"> </b>Centre</th>
+							<th style="text-align:left;"><b class="icon-map"> </b>region</th>
+							<th style="text-align:left;"><b class="icon-phone"> </b>Télephone</th>
+							<th style="text-align:left;"><b class="icon-mail2"> </b>Email</th>
+							<th style="text-align:left;"><b class="icon-stack"> </b>Status</th>		
+							<th><b class="icon-cogs"> </b></th>
+						</tr>
+					</thead>
+					{% for item in stadier %}
+					<tbody>
+						<tr>
+							<td style="text-align:left;" class="user-name">{{ item.id }}</td>
+							<td style="text-align:left;" class="user-email">{{ item.nom }} {{ item.prenom }}</td>
+							<td style="text-align:left;" class="user-phone">{{ item.centre.nom }}</td>
+							<td style="text-align:left;" class="user-phone">{{ item.centre.region }}</td>
+							<td style="text-align:left;" class="user-mobile">{{ item.phone }}</td>
+							<td style="text-align:left;" class="user-email">{{ item.login }}</td>
+							<td style="text-align:;" class="user-email">
+								{% if item.status == 0 %}
+									<img src="{{ asset('assets/image/invisible.png') }}" width="30" height="30" alt="vérfier">
+								{% else %}
+									<img src="{{ asset('assets/image/good.png') }}" width="30" height="30" alt="vérfier">
+								{% endif %}
+							</td>
+							<td>
+								<a class="edit" href="{{ path('arenafootball_plateform_admin_stadier_edit',{'id': item.id}) }}">
+									<i class="icon-pencil" style="font-size:14pt;"></i>
+								</a>
+									&nbsp;
+								<a class="delete" href="{{ path('arenafootball_plateform_admin_stadier_delete',{'id': item.id}) }}" 
+								   onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce terrain: {{ item.nom }} ?'));">
+									<i class="icon-remove" style="font-size:14pt;"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+					{% endfor %}
+				</table>
+			</div>
+			
+                <br>
+			</header>
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }}  
+			</footer> 
+		</div><!-- /container -->		
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}

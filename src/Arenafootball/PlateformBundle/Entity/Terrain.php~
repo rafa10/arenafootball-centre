@@ -1,0 +1,132 @@
+<?php
+
+namespace Arenafootball\PlateformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
+/**
+ * Terrain
+ *
+ * @ORM\Table(name="terrain")
+ * @ORM\Entity
+ */
+class Terrain
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="capacite", type="string", length=50)
+     * @Assert\NotBlank()
+     */
+    private $capacite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Arenafootball\PlateformBundle\Entity\Centre")
+     * @ORM\joinColumn(nullable=false)
+     */
+    private $centre;
+
+    public function __toString()
+        {
+            return $this->nom;
+        }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Terrain
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set capacite
+     *
+     * @param string $capacite
+     * @return Terrain
+     */
+    public function setCapacite($capacite)
+    {
+        $this->capacite = $capacite;
+
+        return $this;
+    }
+
+    /**
+     * Get capacite
+     *
+     * @return string 
+     */
+    public function getCapacite()
+    {
+        return $this->capacite;
+    }
+
+    /**
+     * Set centre
+     *
+     * @param \Arenafootball\PlateformBundle\Entity\Centre $centre
+     * @return Terrain
+     */
+    public function setCentre(\Arenafootball\PlateformBundle\Entity\Centre $centre)
+    {
+        $this->centre = $centre;
+
+        return $this;
+    }
+
+    /**
+     * Get centre
+     *
+     * @return \Arenafootball\PlateformBundle\Entity\Centre 
+     */
+    public function getCentre()
+    {
+        return $this->centre;
+    }
+}

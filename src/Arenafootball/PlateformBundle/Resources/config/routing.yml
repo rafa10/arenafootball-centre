@@ -1,0 +1,19 @@
+arenafootball_plateform_routingHome:
+    resource: "@ArenafootballPlateformBundle/Resources/config/Routing/routingHome.yml"
+    prefix:   /
+
+arenafootball_plateform_routingStadier:
+    resource: "@ArenafootballPlateformBundle/Resources/config/Routing/routingStadier.yml"
+    prefix:   /
+
+arenafootball_plateform_routingClient:
+    resource: "@ArenafootballPlateformBundle/Resources/config/Routing/routingClient.yml"
+    prefix:   /
+
+arenafootball_plateform_routingTerrain:
+    resource: "@ArenafootballPlateformBundle/Resources/config/Routing/routingTerrain.yml"
+    prefix:   /
+
+arenafootball_plateform_routingAdmin:
+    resource: "@ArenafootballPlateformBundle/Resources/config/Routing/routingAdmin.yml"
+    prefix:   /

@@ -1,0 +1,347 @@
+/* General Demo Style */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #eaeaea;
+	background: white;
+}
+
+a {
+	color: #b4c7da;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	color: #fff;
+}
+
+/* Header Style */
+.main,
+.container > header {
+	margin: 0 auto;
+	padding: 0.4em;		
+
+}
+
+
+
+
+.container > header {
+	
+	width: 100%;
+	background:#202020 ;
+	border-bottom:3px solid #191919;
+}
+
+.container > header h1 {
+	font-size: 2.625em;
+	line-height: 1.3;
+	margin: 0;
+	margin-left: 10px;
+	font-weight: 300;
+	color:#e74c3c;
+}
+
+.container > header span {
+	display: block;
+	font-size: 40%;
+	color: #bdc3c7;
+	margin-top: -10px;
+	margin-left: 10px;
+	padding: 0 0 0.6em 0.1em;
+}
+
+/*_____________________*/
+
+.nav{	margin: 0 auto;
+		width: 43%;
+		height: 30px;
+		margin-top: -85px;
+		margin-right: 20px;
+		float: right;		
+}
+.nav ul{
+	list-style: none;
+}
+.nav li a{
+	display: inline-block;
+	float: right;	
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: 300;
+	background:#191919 ;
+	border-radius: 0px;
+	text-decoration: none;	
+	padding: 10px 20px;
+	color:white;
+	border-left: 3px solid #202020 ;
+	opacity: 0.6;
+}
+
+.nav li a:hover {
+	display: inline-block;
+	float: right;	
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: 300;
+	background:;	
+	padding: 10px 20px;
+	color:#e74c3c;
+	border-radius: 0px;
+	border left: 1px solid #ccc ;
+	opacity: 1;
+}
+
+.nav li a:active {
+	display: inline-block;
+	float: right;	
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: 300;
+	background:#fff;	
+	padding: 10px 20px;
+	color:#e74c3c;
+	border-radius: 0px;
+	border left: 1px solid #ccc ;
+	opacity: 1;
+}
+
+.sous_menu{    
+		margin-top: -22px;
+		margin-right: -10px;
+		width: 350px;
+		height: 120px;
+		float: right;
+		visibility: visible;
+					
+}
+.sous_menu ol{ 
+		list-style: none;
+
+}
+.sous_menu li a {		
+	display: block;		
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: 300;
+	width: 280px;
+	background:#fff ;
+	border-radius: 4px ; 
+	text-decoration: none;	
+	padding: 10px 20px;
+	color:#202020;
+	border-bottom: 1px solid #333 ;
+	opacity: 0.9;
+}
+.sous_menu li a:hover {
+	display: block;		
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: 300;
+	width: 280px;
+	background:#191919 ;
+	border-radius:4px ;
+	text-decoration: none;	
+	padding: 10px 20px;	
+	border: 1px solid #333 ;		
+	color:#e74c3c;
+	opacity: 0.9;
+}
+
+
+ .trianglehaut{
+    border-color: transparent transparent #FFFFFF;
+    border-style: solid;
+    border-width: 0 12px 15px;
+    cursor: pointer;
+    height: 0;
+    float: right;    
+    margin-right: 80px;
+    margin-top: -21px;
+    width: 0;
+    opacity: 0.9;
+}
+
+ 
+/*______________________*/
+
+
+/* Main Content */
+.main {
+	max-width: 100%;
+	background: url('../image/bg-main.jpg') no-repeat fixed center bottom / 100% auto transparent;
+	border-bottom: 0px solid #ccc;
+}
+
+.main2{
+	max-width: 100%;
+	background: url('../image/bg-main.jpg') no-repeat fixed center top / 100% auto transparent;
+	height: 720px;	
+	border-bottom: 0px solid #ccc;
+	
+}
+
+.main3{
+	max-width: 100%;	
+	height: 720px;	
+	background: url('../image/bg-main.jpg') no-repeat fixed center center / 100% auto transparent;
+	border-bottom: 1px solid #ccc;
+}
+.main4{
+	max-width: 100%;
+	background-color: #fff;
+	height: 300px;	
+
+}
+
+.main_standard {
+	max-width: 100%;
+	background-color: #ccc;
+	height: 300px;
+}
+	
+}
+.column p {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0;
+	margin: 0;
+	text-align: right;
+	line-height: 1.5;
+}
+.columncenter p {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	line-height: 1.5;	
+}
+.main2 p{
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	line-height: 1.5;
+	color:#000;	
+}
+.main3 p{
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	line-height: 1.5;
+	color:#000;	
+}
+.column {
+	float: left;
+	width: 50%;
+	padding: 0 2em;
+	min-height: 300px;
+	position: relative;
+	color: #fff;
+}
+.column2 {
+	float: left;
+	width: 100%;
+	padding: 0 2em;
+	min-height: 300px;
+	position: relative;
+	color: #fff;
+	position: 10px;
+}
+
+.column:nth-child(2) {
+	box-shadow: -1px 0 0 rgba(0,0,0,0.1);
+}
+
+.column p {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 10px 20px;
+	margin-top: 300px;
+	text-align: left;
+	line-height: 1.5;
+	display: inline-block;
+	background: white;
+	opacity: 0.4;
+	color:#202020 ;
+}
+
+.column a {
+	text-decoration: none;
+	color:#FFF;
+	border-style: 1px solid #000;	
+}
+
+.column a:hover {
+	color: #000;
+	display: inline-block;
+	background-color: #fff;
+	opacity: 0.5;
+}
+
+.column2 a {
+	text-decoration: none;
+	color:#fff;
+	font-size: 0.7em;
+	width: 300px;
+	display: inline-block;
+	background:#e74c3c;
+	border-bottom: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	opacity: 1; 	
+}
+
+.column2 a:hover {	
+	color: #fff;
+	width: 300px;
+	font-size: 0.7em;
+	display: inline-block;
+	background-color: #202020;
+	border-bottom: 2px solid #ccc;
+	border-radius: 5px;
+	padding: 10px; 
+	opacity: 1;
+}
+
+.column2 input{
+	width: 30%;
+	height: 60px;	
+	padding: 20px 65px 20px 20px;
+	font-family: inherit;
+	font-size: 15px;
+
+}
+.column2 select{
+	width: 30%;
+	height: 60px;	
+	padding: 20px 65px 20px 20px;
+	font-family: inherit;
+	font-size: 15px;
+
+}
+

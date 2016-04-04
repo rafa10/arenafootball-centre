@@ -1,0 +1,29 @@
+<script type="text/javascript">
+	function clickAffiche(){
+			document.getElementById('info_stadier').style.display='block' ;		    
+		    document.getElementById('info_pass').style.display='none' ;
+		    document.getElementById('photo').style.display='none' ;
+		    
+		                } 
+	function clickHMatche(){		    
+			document.getElementById('info_stadier').style.display='none' ;		    
+		    document.getElementById('info_pass').style.display='block' ;
+		    document.getElementById('photo').style.display='none' ;
+		                }
+	function clickPhoto(){		    
+			document.getElementById('info_stadier').style.display='none' ;		    
+		    document.getElementById('info_pass').style.display='none' ;
+		    document.getElementById('photo').style.display='block' ;
+		                }	                
+	 	                	                
+</script>
+
+<div class="region">		
+		<h3 class="text_region">Préférences</h3>						
+			<ul>				
+				<li><a href="{{ path('arenafootball_plateform_espace_stadier_data') }}"><b class="icon-profile"> </b>Info stadier</a></li>
+				<li><a href="{{ path('arenafootball_plateform_espace_stadier_upload') }}"><b class="icon-image"> </b>Photo centre </a></li>
+				<li><a href="{{ path('arenafootball_plateform_espace_stadier_password') }}"><b class="icon-key"></b>Changer&nbsp;mot&nbsp;de&nbsp;passe </a></li>				
+			</ul>			
+						
+</div>	

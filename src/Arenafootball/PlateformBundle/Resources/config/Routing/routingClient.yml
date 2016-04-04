@@ -1,0 +1,35 @@
+arenafootball_plateform_espace_client:
+    path:     /connexion-client
+    defaults: { _controller: ArenafootballPlateformBundle:Home:loginClient }
+
+arenafootball_plateform_espace_client_index:
+    path:     /client/acceuil
+    defaults: { _controller: ArenafootballPlateformBundle:Client:indexClient }
+
+arenafootball_plateform_espace_client_data:
+    path:     /client/profil
+    defaults: { _controller: ArenafootballPlateformBundle:Client:dataClient }
+
+arenafootball_plateform_espace_client_password:
+    path:     /client/profil/changer-mot-de-passe
+    defaults: { _controller: ArenafootballPlateformBundle:Client:passwordClient }
+
+arenafootball_plateform_espace_client_tickets:
+    path:     /client/recu/{id}/{centre}/{clientN}/{clientP}/{terrain}/{date}/{time}/{prix}
+    defaults: { _controller: ArenafootballPlateformBundle:Client:recuClient }
+
+arenafootball_plateform_espace_bookM_delete:
+    path:     /client/reservation/{id}
+    defaults: { _controller: ArenafootballPlateformBundle:Client:deleteBookMClient }
+
+arenafootball_plateform_espace_bookA_delete:
+    path:     /client/reservation/{id}
+    defaults: { _controller: ArenafootballPlateformBundle:Client:deleteBookAClient }
+
+arenafootball_plateform_ajouter_client:
+    path:     /inscription-client
+    defaults: { _controller: ArenafootballPlateformBundle:Client:addClient }
+
+arenafootball_plateform_sendmail_client:
+    path:     /validation-inscription-client
+    defaults: { _controller: ArenafootballPlateformBundle:Client:sendMailClient }

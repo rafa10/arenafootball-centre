@@ -1,0 +1,187 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace stadier - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu.html.twig") }}
+				
+			<div class="main">
+			
+			<div class="column instruction">
+             
+                 
+               
+               		<!--<div id="form_search" class="search_booking region ">        	
+		        	<h3><a style="color:#FFF;" href="#">Statistique</a></h3><br><br>		        	
+		        	<div  class="form_match">
+		       			<form  name="f" action="{{ path('arenafootball_plateform_espace_stadier_index') }}" method="POST">
+		       					<table style="border:none;">
+		       					<tr>
+		       					<td style="background:#333; border-radius:5px; width:15%; text-align:center; color:#FFF;"><b style="font-size: 20px;" class="icon-calendar"> </b></td>
+		       					<td><input type="text" name="date" value="{{ 'now'|date('d-m-Y') }}" disabled="true" required/></td>
+		       					</tr>	       				
+								<tr>
+									<td style="background:#333; border-radius:5px; text-align:center; color:#FFF;"><b style="font-size: 20px;" class="icon-stopwatch"> </b></td>
+									<td><input type="time" name="time" value="{#{ 'now'|date('H:i') }#}" required/></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td><td>&nbsp;</td>
+								</tr>								
+								
+								<tr>					
+								<td colspan="2">
+									<aside style="text-align:center;">
+										<button type="submit"><span class="icon-search"> </span> Recherche</button>
+									</aside>
+								</td>
+								</tr>								
+							</table>	
+						</form><br>
+		       		</div>
+		        </div>--> 
+
+               		
+               
+               
+               <div class="content_completed"><br>
+
+               	 <div class="column three_small">
+               		 	
+		        	<!--<p class="text_corps" ><strong>Ajouter votre stade des maintemant</strong></p>
+					<p class="text_corps2" >Accéder ou Créer un espace personnel pour la gestion de votre stade </p>-->
+					<div  class="item-icon">
+						<div class="post_small">
+							<div class="icon icon_stade_m_small "><img  src="{{ asset('assets/image/football96.png') }}" width="70" height="70" alt="icon" /></div>
+						</div>
+						<div class="post_text green_bord">
+							<div class="icon_small"><span class="post_content">{{ terrain|length }}<span class="info_bord">Terrain</span></span></div>                        
+						</div>
+						
+						
+						<div class="post_small ">
+							<div class="icon_small"><span class="icon-feed2"></span></div>
+						</div>
+						<div class="post_text move_bord">
+							<div class="icon_small"><span class="post_content ">{{ bookabonnement|length }}<span class="info_bord">Abonnées</span></span></div>
+						</div>				
+						<div class="post_small">
+							<div class="icon icon_stade_m_small "><img  src="{{ asset('assets/image/football1183.png') }}" width="70" height="70" alt="icon" />
+							</div>
+						</div>
+						<div class="post_text red_bord">
+							<div class="icon_small"><span class="post_content">{{ bookmatch|length }}<span class="info_bord">Matches</span></span></div>
+						</div>
+						<div class="post_small">
+							<div class="icon_small"><span class="icon-users"></span></div>
+						</div>
+						<div class="post_text orange_bord">
+							<div class="icon_small"><span class="post_content">{{ bookacademie|length }}<span class="info_bord">Académie</span></span></div>
+						</div>
+					</div>
+
+		        </div>
+
+				<div class="componentS">
+					
+					
+					
+					<table>
+						{% for ter in terrain %}
+						<thead>
+							<tr>
+								<th colspan="6" style="color:#FFF;">
+									<b class="icon-calendar2"> </b>Plannings de jour (<b>{{ ter.nom}}</b>) -->
+									<span>
+										{{ "now"|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y') }}
+									</span>
+								</th>
+							</tr>							
+							<tr>
+								<th><b>Terrain</b></th>								
+								<th style="text-align:left;"><b class="icon-user"> </b><b>Client</b></th>
+								<th><b class="icon-phone"> </b><b>Télephone</b></th>
+								<th><b class="icon-calendar"> </b><b>Date</b></th>
+								<th><b class="icon-stopwatch"> </b><b>Temps</b></th>
+								<th><b class="icon-spinner"> </b><b>Etat</b></th>		
+							</tr>
+						</thead>
+						{% for item in bookmatch %}
+						{% if  ter.id == item.terrain.id and item.date|date('d-m-Y') == "now"|date('d-m-Y') %}
+						<tbody>
+							<tr>
+								<td class="user-name">{{ item.terrain.nom }}</td>
+								<td style="text-align:left;">{{ item.client.nom }}&nbsp;{{ item.client.prenom }}</td>
+								<td class="user-phone">{{ item.client.phone }}</td>
+								<td class="user-email">{{ item.date|date('d-m-Y') }}</td>
+								<td class="user-email">{{ item.time|date('H:i') }}</td>
+								{% if item.time|date('H:i') < "now"|date('H:i') %}
+									<td style="background:#FFC0CB;"><span>Match joué</span></td>
+								{% else %}
+									<td style="background:#98FB98;"><span>Match</span></td>
+								{% endif %}	
+							</tr>
+						</tbody>
+						{% endif %}
+						{% endfor %}
+						{% for item in bookabonnement %}
+						{% if ter.id == item.terrain.id and item.dateGo|date('d-m-Y') == "now"|date('d-m-Y') %}
+						<tbody>
+							<tr>
+								<td class="user-name">{{ item.terrain.nom }}</td>
+								<td style="text-align:left;">{{ item.client.nom }}&nbsp;{{ item.client.prenom }}</td>
+								<td class="user-phone">{{ item.client.phone }}</td>								
+								<td class="user-email">{{ item.dateGo|date('d-m-Y') }}</td>
+								<td class="user-email">{{ item.time|date('H:i') }}</td>
+								{% if item.time|date('H:i') < "now"|date('H:i') %}
+									<td style="background:#FFC0CB;"><span>Abonnement joué</span></td>								
+								{% else %}
+									<td style="background:#98FB98;"><span>Abonnement</span></td>	
+								{% endif %}	
+							</tr>
+						</tbody>
+						{% endif %}
+						{% endfor %}
+						{% for item in bookacademie %}
+						{% if ter.id == item.terrain.id and item.dateGo|date('d-m-Y') == "now"|date('d-m-Y') %}
+						<tbody>
+							<tr>
+								<td class="user-name">{{ item.terrain.nom }}</td>								
+								<td style="text-align:left;">Académie</td>
+								<td class="user-phone">-</td>
+								<td class="user-email">{{ item.dateGo|date('d-m-Y') }}</td>
+								<td class="user-email">{{ item.time|date('H:i') }}</td>
+								{% if item.time|date('H:i') < "now"|date('H:i') %}
+									<td style="background:#FFC0CB;"><span>Académie joué</span></td>								
+								{% else %}
+									<td style="background:#98FB98;"><span>Académie</span></td>	
+								{% endif %}	
+							</tr>
+						</tbody>
+						{% endif %}
+						{% endfor %}
+						{% endfor %}
+					</table>				
+				</div>
+			</div>
+		</div>
+	</div>
+
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+			</footer>
+
+		</div><!-- /container -->
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+{% endblock %}

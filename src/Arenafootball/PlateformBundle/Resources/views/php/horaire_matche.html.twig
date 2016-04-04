@@ -1,0 +1,57 @@
+<div id="Hmatche" style="display:none;" class="booking">
+                {{ form_start(form) }}
+                    <h1 style="background:#333; font-size:2.2em; color:#2ecc71; border-radius:4px 4px 0px 0px; padding: 12px; text-align:center;" >Créez le tarifs du centre </h1><br>
+                        <table style="width:80%;">
+                                <tr>
+                                    <th>{{ form_label(form.centre, "Type du tarif") }}:</th>
+                                    <td>
+                                        <select name="type" required>
+                                            <option value="" style="background:777;">Choisissez le type</option>
+                                            <option value="Abonnement">Abonnement</option>
+                                            <option value="Matche">Matche</option>
+                                            <option value="Academie">Académie</option>                                     
+                                    </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="width:50%;">{{ form_label(form.centre, "Durée de scéance") }} :</th>
+                                    <td style="width:50%;"><select name="duree" required>
+                                            <option value="" style="background:777;">Choisissez la durée d'un scéance</option>
+                                            <option value="1:30">1:30</option>
+                                            <option value="1:20">1:20</option>
+                                            <option value="1:15">1:15</option>                                     
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th> {{ form_label(form.centre, "Nombre de scéance par mois") }} :</th>
+                                    <td> <input type="number" name="nb_sceance_mois" placeholder="Saisie le nombre" required/> </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ form_label(form.centre, "Durée d'abonnement") }} :</th>
+                                    <td><select name="duree_abonnement" required>
+                                            <option value="" style="background:777;">Choisissez une durée</option>
+                                            <option value="1" >1 mois</option>
+                                            <option value="3" >3 mois</option>
+                                            <option value="6" >6 mois</option>
+                                            <option value="12" >12 mois</option> 
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <th>{{ form_label(form.centre, "Heures des scéances") }} :</th>
+                                    <td>
+                                        De: <input type="time" name="heure_de" required/> &nbsp;
+                                        A: <input type="time" name="heure_a" required/>
+                                     </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ form_label(form.centre, "Tarif de la scéance par groupe") }} :</th>
+                                    <td> <input type="number" name="prix" placeholder="Saisier le prix" required/></td>
+                                </tr>
+                        </table>
+                        <aside style="text-align:center;"><br><br>                               
+                                <button type="submit">Suivant</button>
+                                <button type="reset">Annuler</button>
+                        </aside>                              
+                {{ form_end(form) }}<br><br>                    
+</div>
+

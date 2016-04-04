@@ -1,0 +1,129 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Inscription client - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <body>
+        <div class="container">
+            <!--header-->                                       
+              {{ include("ArenafootballPlateformBundle:Menu:header_menu_website_content.html.twig") }}
+            <!--content-->
+            <div class="main">  
+
+                <div class="column tow_small ">
+                    <!--<p class="text_corps" ><strong>Réserver vos matche</strong></p>-->
+                    <!--<p class="text_corps2" >Conculter ou Réserver vos matche </p>--> 
+                    <div class="item_icon">                                         
+                        <div class="post_small">
+                            <div class="icon icon_stade_m_small"><img  src="{{ asset('assets/image/Footstade.png') }}" width="70" height="70" alt="icon"/></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon_small"><span class="icon-paste"> </span></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon_small"><span class="icon-stopwatch"> </span></div>
+                        </div>
+                        <div class="post_small">
+                            <div class="icon_small"><span class="icon-calendar"></span></div>
+                        </div>
+                    </div>          
+                    
+                </div>              
+                <!--<div id="hero" class="row center"></div> -->
+                <div class="column instruction">
+                    <!--<h2 class="text_corps3" >Conculter ou Réserver vos matche </h2>-->
+                    <!--block match chercher-->                 
+                    <div class="nav_left">
+                        <div class="region">
+                        <h3 class="text_region">Région</h3>
+                            <ul>
+                                {% for item in regioncentre %}
+                                    <li><span class="icon-map">&nbsp;</span><a href="{{ path('arenafootball_plateform_centre',{'region': item.nom}) }}">{{ item.nom }}</a></li>
+                                {% endfor %}
+                            </ul>                       
+                        </div><p></p>
+                    </div>
+
+                    <div style="width:58%;" class="content_center">
+
+                       <br><div class="booking" >
+                        {{ form_start(form) }}
+                        <h1 style="background:#333; font-size:1.4em; color:#EE3551; padding: 13px; text-align:center;" > Créez un compte Arenafootball</h1>
+                                <br>                           
+                               <table style="border:none; width:70%">
+                                        <tr><th colspan="2"><span class="icon-notification"> </span> <span class="red_color">
+                                            {{ form_errors(form) }} 
+                                            {{ form_errors(form.civilite) }}
+                                            {{ form_errors(form.nom) }}
+                                            {{ form_errors(form.prenom) }}
+                                            {{ form_errors(form.phone) }}
+                                            {{ form_errors(form.login) }}
+                                            {{ form_errors(form.password) }}
+                                        </span></th></tr>
+                                   {% for message in app.session.flashbag.get('info') %}
+                                       <tr>
+                                           <th colspan="2" style="text-align:center; background:#2ecc71; border-radius:4px; color:#fff;">{{ message }}</th>
+                                       </tr>
+                                   {% endfor %}
+                                   {% for message in app.session.flashbag.get('testmail') %}
+                                           <tr>
+                                               <th colspan="2" style="text-align:center; background:#e74c3c; border-radius:4px; color:#fff;">{{ message }}</th>
+                                           </tr>
+                                    {% endfor %}
+                                   <tr>
+                                            <th style="width:50%;">{{ form_label(form.civilite, "Civilité") }} :</th>
+                                            <td style="width:50%;">{{ form_widget(form.civilite) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.nom,"Nom") }} :</th>
+                                            <td>{{ form_widget(form.nom) }}</td>
+                                        </tr>
+                                         <tr>
+                                            <th >{{ form_label(form.prenom, "Prénom") }} :</th>
+                                            <td>{{ form_widget(form.prenom) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.phone, "Télephone") }} :</th>
+                                            <td>{{ form_widget(form.phone) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ form_label(form.login, "Email") }} :</th>
+                                            <td>{{ form_widget(form.login) }}</td>
+                                        </tr>
+                                       <tr>
+                                            <th>{{ form_label(form.password,"Mot de passe") }} :</th>
+                                            <td>{{ form_widget(form.password) }}</td>
+                                        </tr>
+                                </table>
+                                <aside style="text-align:center;" ><br>
+                                           <button type="submit">Valider</button>
+                                           <button type="reset">Annuler</button>
+                                </aside><br>
+                            {{ form_end(form) }} 
+                    </div> 
+                    </div>
+
+                    <div class="nav_left">
+                    {{ include("ArenafootballPlateformBundle:php:bar_pub.html.twig") }}
+                    </div>
+                </div>
+            </div>
+            <!--footer-->
+            <footer>
+                {{ include("ArenafootballPlateformBundle:php:footer.html.twig") }} 
+            </footer> 
+        </div><!-- /container -->
+        {% block javascript %}
+            <script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+            <script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('assets/js/classie.js') }}"></script>
+            <script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+            <script>
+                new gnMenu( document.getElementById( 'gn-menu' ) );
+            </script>
+        {% endblock %}
+
+{% endblock %}

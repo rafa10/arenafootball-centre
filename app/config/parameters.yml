@@ -1,0 +1,17 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     null
+    database_port:     ~
+    database_name:     null
+    database_user:     null
+    database_password: null
+
+    mailer_transport:  smtp
+    mailer_auth_mode:  login
+    mailer_host:       null
+    mailer_port:       587
+    mailer_user:       null
+    mailer_password:   null
+    locale:            fr
+    secret:            null 
+    database_path:     ~

@@ -1,0 +1,27 @@
+<br><br><br>
+<div id="myCarousel" class="carousel">
+
+	<!--<ol class="carousel-indicators">	
+		
+		<li data-target="#myCarousel" data-slide-to="" class="active"></li>		
+		
+	</ol>-->
+
+	<div class="carousel-inner">
+    {% for slide in photo %}
+    	{% if slide.centre.id == item.centre.id and slide.alt == 'photo' %}
+		<div class="item active">
+			<img src="{{ asset('uploads/' ~ slide.url ) }}"  alt="{{ slide.id }}"  class="img-responsive">
+			<div class="carousel-caption">
+				<h3></h3>
+			</div>
+		</div><br>
+		{% endif %}
+	{% endfor %}	
+	</div>
+	
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+<br>

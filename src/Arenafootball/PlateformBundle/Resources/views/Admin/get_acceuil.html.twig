@@ -1,0 +1,93 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace admin - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+			
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_admin.html.twig") }} 
+				
+			<header>
+                <div class="component">
+				<h1 style="color:#777;"><b class="icon-notification"> </b>Notification</h1>
+				<table>
+					<thead>
+						<tr>							
+							<th style="border-color:#FFF;"><b class="icon-user4"> </b>Stadiers ({{ Newstadier|length }})</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in Newstadier %}
+						<tr>
+							<td style="border-color:#FFF;" class="user-name">{{ item.nom }}&nbsp;{{ item.prenom }}</td>
+							<td>
+								<a class="add" href="{{ path('arenafootball_plateform_admin_stadier_edit',{'id': item.id}) }}">
+									Confirmer
+								</a> 
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<table>
+					<thead>
+						<tr>
+							<th><b class="icon-user"> </b>Clients ({{ Newclient|length }})</th>
+							<th></th>						
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in Newclient %}
+						<tr>
+							<td class="user-phone">{{ item.nom }}&nbsp;{{ item.prenom }}</td>
+							<td>
+								<a class="add" href="{{ path('arenafootball_plateform_admin_client_edit',{'id': item.id}) }}">
+									Confirmer
+								</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<h1 style="color:#777;"><b class="icon-stats"> </b>Statistiques</h1>
+				<table>
+					<thead>
+						<tr>
+							<th><b class="icon-calendar2"> </b>Date de matche</th>
+							<th><b class="icon-clock"> </b>Temps de matche</th>
+							<th><b class="icon-user"> </b>Client</th>
+							<th><b class="icon-uniE600"> </b>Type de matche</th>	
+						</tr>
+					</thead>
+					<tbody>						
+						<tr>
+							<td class="user-name">rose parker</td>
+							<td class="user-email">rose.parker16@example.com</td>
+							<td class="user-phone"> - </td>
+							<td class="user-mobile"> - </td>
+						</tr>
+						</tbody>
+				</table>
+			</div>
+			</header>
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }}  
+			</footer> 
+		</div><!-- /container -->		
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>-->
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>-->
+			<script src="{{ asset('assets/js/date_heur.js') }}" type="text/javascript" ></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}
+

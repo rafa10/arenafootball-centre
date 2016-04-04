@@ -1,0 +1,81 @@
+{% extends "ArenafootballPlateformBundle::layout.html.twig" %}
+
+{% block title %} Espace client - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<body>
+		<div class="container">
+
+			{{ include("ArenafootballPlateformBundle:Menu:header_menu_admin.html.twig") }}
+				
+			<header>
+				
+			<br>
+			<div style="width:80%;" class="booking">                	
+                {{ form_start(form) }}  	
+                	<h1  style="background:#333; font-size:1.4em; color:#EE3551; padding: 13px; text-align:center;">Données client</h1>
+                		 <br>
+                		<table style="width:70%;">
+                					
+                					<tr>
+                						<th style="width:50%;">ID Client :</th>
+                						<td style="background:white; width=:50%; padding-left:10px;">{{ clt.id  }}</td>
+                					</tr>
+                					<tr>
+	                    				<th>Civilité :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.civilite  }} </td>
+	                    			</tr>
+									<tr>
+	                    				<th>Nom :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.nom  }} </td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>Prénom :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.prenom  }} </td>
+	                    			</tr>	                    		
+	                    			<tr>
+	                    				<th>Télephane :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.phone  }} </td>
+	                    			</tr>	                    			
+	                    			<tr>
+	                    				<th>Email :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.login  }} </td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>Mot de passe :</th>
+	                    				<td style="background:white; padding-left:10px;"> {{ clt.password  }} </td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th>{{ form_label(form.status, "Status (Vérification compte)") }} :</th>
+	                    				<td style="background:white; padding-left:10px;">{{ form_widget(form.status) }}</td>
+	                    			</tr>
+	                    
+                		</table>
+                                <aside style="text-align:center;"><br><br>                               
+                                   <button type="submit">Modifier client ({{ clt.nom }})</button>
+                                   <a class="add" href="javascript:history.back()"><button>Annuler</button></a>
+                                </aside>
+                                <br><br>
+                	{{ form_end(form) }}
+                </div>
+                <br>	
+
+			</header>
+			<footer>
+				{{ include("ArenafootballPlateformBundle:php:footer.html.twig") }}  
+			</footer> 
+		</div><!-- /container -->		
+		{% block javascript %}
+			<script src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+			<script src="{{ asset('assets/js/smooth_target.js') }}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+			<script type="text/javascript" src="/symfony/assets/js/date_heur.js') }}"></script>
+			<script src="{{ asset('assets/js/classie.js') }}"></script>
+			<script src="{{ asset('assets/js/gnmenu.js') }}"></script>
+			<script>
+				new gnMenu( document.getElementById( 'gn-menu' ) );
+			</script>
+		{% endblock %}
+
+{% endblock %}
